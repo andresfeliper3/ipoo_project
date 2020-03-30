@@ -19,7 +19,7 @@ using namespace std;
 */
 class Individuo 
 {
-    private:
+    protected:
         string nombre;
         string letraParaMover; //Letra asociada al movimiento
         vector <Individuo *> puedeComer; //Bichos que puede comer
