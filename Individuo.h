@@ -12,6 +12,11 @@
 #include <string>
 using namespace std;
 
+/*
+  Clase: Individuo
+  Posee un nombre y una letra asociada al movimiento
+  Relaciones: Conoce a los individuos que se puede comer
+*/
 class Individuo 
 {
     private:
