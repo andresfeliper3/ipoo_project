@@ -9,10 +9,19 @@
 #define JUGADOR__HH
 
 #include "Individuo.h"
+#include "Lugar.h"
 
 class Jugador
 {
-    
+  Protected:
+    vector <Lugar*>;
+    Vector < pair <Individuo*, string> >;
+
+  Public:
+    crearIndividuo(nombre, letraMover);
+
+
+
 
 };
 #else
