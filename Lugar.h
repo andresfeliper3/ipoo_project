@@ -11,12 +11,7 @@
 #include <vector>
 #include "Individuo.h"
 using namespace std;
-/*Debe tener un puntero que apunte a su vecino.
-		Relaciones:
-		Posee un vector de punteros que apuntan a Individuo.
-		Responsabilidad: 
-determina si se perdió.
-*/
+
 /*
 Nombre: Lugar
 Posee un vector de individuos
