@@ -32,7 +32,7 @@ class Individuo
         virtual ~Individuo();
 
         //Agrega posibles presas para el Individuo, añadiendo punteros al vector puedeComer
-        virtual void agregarPresa(Individuo *);  
+        virtual void agregarPresa(Individuo *presa);  
 
         //Añadir función "crearBichos" 
 };
