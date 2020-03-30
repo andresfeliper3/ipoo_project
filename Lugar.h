@@ -27,6 +27,9 @@ class Lugar
     //Constructor
     Lugar(Lugar *lugarVecino); //Al crear un lugar, se especifica cuál es el vecino inicial
 
+    //Destructor
+    virtual ~Lugar();
+
     //Cambia el lugar vecino debido al movimiento
     virtual void cambiarLugarVecino();
 
