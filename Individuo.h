@@ -28,6 +28,9 @@ class Individuo
         //Constructor
         Individuo(string nombre, string letraParaMover);
 
+        //Destructor
+        virtual ~Individuo();
+
         //Agrega posibles presas para el Individuo, añadiendo punteros al vector puedeComer
         virtual void agregarPresa(Individuo *);  
 
