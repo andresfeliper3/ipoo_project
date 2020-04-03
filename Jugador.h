@@ -35,7 +35,7 @@ class Jugador
   Protected:
     vector <Lugar*> lugares; //Vector con todos los lugares existentes.
     vector <Individuo*> individuos; //Vector de punteros a individuo.
-    lugar* barcaPtr; //Puntero a la Barca.
+    Lugar* barcaPtr; //Puntero a la Barca.
 	string tecla;
 	
   Public:
