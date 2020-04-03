@@ -22,9 +22,9 @@
             variable que guarda la letra que recibiï¿½.
   Funcionalidades:
     - Puede crear individuos.
-    - Puede conocer un nuevo lugar.
+    - Puede conocer un nuevo lugar y lo agrega a su vector de punteors a Lugar. La barca siempre debe quedar en la última posición (Posición 2).
     - Puede leer el teclado.
-    - Puede decirle a los individuos y a la barca la letra que recibiï¿½.
+    - Puede jugar: comparar cada letra de cada individuo con la letra que recibió del usuario para mover al individuo correspondiente.
     - Puede mostrar el estado del juego en la pantalla.
 
   Relaciones: Conoce a Individuo, conoce a Lugar.
@@ -34,9 +34,8 @@
 class Jugador
 {
   Protected:
-    vector <Lugar*> lugares; //Vector con todos los lugares existentes.
+    vector <Lugar*> lugares; //Vector con todos los lugares existentes. La barca siempre debe estar en la posición 2 (La última).
     vector <Individuo*> individuos; //Vector de punteros a individuo.
-    Lugar* barcaPtr; //Puntero a la Barca.
 	string tecla;
 
   Public:
@@ -56,8 +55,9 @@ class Jugador
 	  llamando al mï¿½todo decirTecla.*/
     virtual string leerTeclado();
 
-    /*Le avisa a los individuos y a la barca la letra que recibiï¿½ del usuario. */
-    virtual string decirTecla (string tecla);
+    /*Compara la letra recibida de leerTeclado con las letras correspondientes a cada individuo y a la barca y al encontrar una coincidencia, 
+	hace que se se mueva a su lugar vecino. */
+    virtual void jugar (string tecla);
 
     //Muestra el estado del juego en pantalla.
     void estado();
