@@ -33,12 +33,12 @@
 */
 class Jugador
 {
-  Protected:
+  protected:
     vector <Lugar*> lugares; //Vector con todos los lugares existentes. La barca siempre debe estar en la posición 2 (La última).
     vector <Individuo*> individuos; //Vector de punteros a individuo.
 	string tecla;
 
-  Public:
+  public:
     //Constructor.
     Jugador();
 
@@ -49,7 +49,7 @@ class Jugador
     virtual crearIndividuo(string nombre, string letraParaMover);
     
     //Pone un lugar en el vector de punteros a lugar.
-    virtual conocerLugar (Lugar* nuevoLugar)
+    virtual conocerLugar (Lugar* nuevoLugar);
 
     /*Lee el teclado para recibir las Ã³rdenes del usuario y avisa a los individuos y a la barca la letra recibida
 	  llamando al mï¿½todo decirTecla.*/
