@@ -17,11 +17,13 @@
 /*
   Clase: Jugador
   Atributos: Vector de punteros que apuntan a Lugar.
-            Vector de parejas que contienen un vector a Individuo y una letraParaMover.
+            Vector de punteros que contiene los individuos.
+            Puntero que apunta a la barca.
+            variable que guarda la letra que recibió.
   Funcionalidades:
     - Puede crear individuos.
     - Puede leer el teclado.
-    - Puede mover a un individuo hacia su lugar vecino.
+    - Puede decirle a los individuos y a la barca la letra que recibió.
     - Puede mostrar el estado del juego en la pantalla.
 
   Relaciones: Conoce a Individuo, conoce a Lugar.
@@ -32,8 +34,10 @@ class Jugador
 {
   Protected:
     vector <Lugar*> lugares; //Vector con todos los lugares existentes.
-    vector <pair <Individuo*, string letraParaMover>> individuos; //Vector de parejas con individuos asociados a su letraParaMover.
-
+    vector <Individuo*> individuos; //Vector de punteros a individuo.
+    lugar* barcaPtr; //Puntero a la Barca.
+	string tecla;
+	
   Public:
     //Constructor.
     Jugador();
@@ -44,12 +48,12 @@ class Jugador
     //Crea un objeto de la clase Individuo y le asocia una letraParaMover.
     crearIndividuo(string nombre, string letraParaMover);
 
-    //Lee el teclado para recibir las Ã³rdenes del usuario.
+    /*Lee el teclado para recibir las Ã³rdenes del usuario y avisa a los individuos y a la barca la letra recibida
+	  llamando al método decirTecla.*/.
     virtual string leerTeclado();
 
-    /*Quita un individuo de un Lugar y lo pone en su Lugar vecino,
-    o mueve a la Barca de un lado a otro del rÃ­o, segÃºn la letra que reciba. */
-    void mover(string tecla);
+    /*Le avisa a los individuos y a la barca la letra que recibió del usuario. */
+    virtual string decirTecla (string tecla);
 
     //Muestra el estado del juego en pantalla.
     void estado();
