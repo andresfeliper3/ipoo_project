@@ -1,6 +1,8 @@
 /*
   Archivo: Individuo.h
-  Autor: Andrés Rincón
+  Autores: Andrés Rincón "andres.rincon.lopez@correounivalle.edu.co"
+  		   Jos� David Barona Hern�ndez "jose.david.barona@correounivalle.edu.co"
+  		   Diego Ledesema "diego.ledesma@correounivalle.edu.co"
   Fecha creación: 2020-03-30
   Fecha última modificación: 2020-03-30
 */
@@ -31,13 +33,13 @@ class Individuo
         //Destructor
         virtual ~Individuo();
 
-        //Agrega posibles presas para el Individuo, añadiendo punteros al vector puedeComer
+        //Agrega posibles presas para el Individuo, a�adiendo punteros al vector puedeComer
         virtual void agregarPresa(Individuo *presa);  
 
         //Retorna la letra asociada al individuo
         virtual string mostrarLetraAsociada();
 
-        //Añadir función "crearBichos" 
+        //A�adir funci�n "crearBichos" 
 };
 #else
 class Individuo;

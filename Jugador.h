@@ -1,11 +1,11 @@
 /*
-  Archivo: Jugador.h
-  Autor: Andrés Rincón
-         Jose David Hernández
-         Diego Ledesma
+  Archivo: Individuo.h
+  Autores: Andrés Rincón "andres.rincon.lopez@correounivalle.edu.co"
+  		   Jos� David Barona Hern�ndez "jose.david.barona@correounivalle.edu.co"
+  		   Diego Ledesema "diego.ledesma@correounivalle.edu.co"
   Fecha creación: 2020-03-30
-  Fecha última modificación: 2020-03-30
-*/
+  Fecha última modificación: 2020-03-30 */
+  
 
 #ifndef JUGADOR__HH
 #define JUGADOR__HH
@@ -26,10 +26,7 @@
     - Puede leer el teclado.
     - Puede jugar: comparar cada letra de cada individuo con la letra que recibi� del usuario para mover al individuo correspondiente.
     - Puede mostrar el estado del juego en la pantalla.
-
   Relaciones: Conoce a Individuo, conoce a Lugar.
-
-
 */
 class Jugador
 {

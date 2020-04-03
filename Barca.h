@@ -1,6 +1,8 @@
 /*
-  Archivo: Lugar.h
-  Autor: Andrés Rincón
+  Archivo: Individuo.h
+  Autores: Andrés Rincón "andres.rincon.lopez@correounivalle.edu.co"
+  		   Jos� David Barona Hern�ndez "jose.david.barona@correounivalle.edu.co"
+  		   Diego Ledesema "diego.ledesma@correounivalle.edu.co"
   Fecha creación: 2020-03-30
   Fecha última modificación: 2020-03-30
 */
@@ -20,6 +22,9 @@ Relaciones: Conoce a Orilla.
 class Barca : public Lugar 
 {
     protected:
+    
+    Lugar *LugarVecino;
+    string letraAsociada;
     
     public:
     //Constructor
