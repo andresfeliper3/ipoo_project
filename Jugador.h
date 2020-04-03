@@ -36,7 +36,7 @@ class Jugador
     vector <Lugar*> lugares; //Vector con todos los lugares existentes.
     vector <Individuo*> individuos; //Vector de punteros a individuo.
     Lugar* barcaPtr; //Puntero a la Barca.
-	string tecla;
+	  string tecla;
 	
   Public:
     //Constructor.
