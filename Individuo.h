@@ -34,6 +34,9 @@ class Individuo
         //Agrega posibles presas para el Individuo, añadiendo punteros al vector puedeComer
         virtual void agregarPresa(Individuo *presa);  
 
+        //Retorna la letra asociada al individuo
+        virtual string mostrarLetraAsociada();
+
         //Añadir función "crearBichos" 
 };
 #else
