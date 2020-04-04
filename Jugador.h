@@ -1,11 +1,11 @@
 /*
-  Archivo: Individuo.h
-  Autores: AndrÃ©s RincÃ³n "andres.rincon.lopez@correounivalle.edu.co"
+  Archivo: Jugador.h
+  Autor: AndrÃ©s RincÃ³n "andres.rincon.lopez@correounivalle.edu.co"
   		   José David Barona Hernández "jose.david.barona@correounivalle.edu.co"
   		   Diego Ledesema "diego.ledesma@correounivalle.edu.co"
   Fecha creaciÃ³n: 2020-03-30
-  Fecha Ãºltima modificaciÃ³n: 2020-03-30 */
-  
+  Fecha Ãºltima modificaciÃ³n: 2020-04-03
+*/
 
 #ifndef JUGADOR__HH
 #define JUGADOR__HH
@@ -24,9 +24,14 @@
     - Puede crear individuos.
     - Puede conocer un nuevo lugar y lo agrega a su vector de punteors a Lugar. La barca siempre debe quedar en la última posición (Posición 2).
     - Puede leer el teclado.
+    - Puede mover un individuo al lugar vecino a su lugar actual. 
+	- Puede mover la barca de una orilla a otra del río.
     - Puede jugar: comparar cada letra de cada individuo con la letra que recibió del usuario para mover al individuo correspondiente.
     - Puede mostrar el estado del juego en la pantalla.
+
   Relaciones: Conoce a Individuo, conoce a Lugar.
+
+
 */
 class Jugador
 {
@@ -43,18 +48,24 @@ class Jugador
     ~Jugador();
 
     //Crea un objeto de la clase Individuo y le asocia una letraParaMover.
-    virtual crearIndividuo(string nombre, string letraParaMover);
+    virtual void crearIndividuo(string nombre, string letraParaMover);
     
     //Pone un lugar en el vector de punteros a lugar.
-    virtual conocerLugar (Lugar* nuevoLugar);
+    virtual void conocerLugar (Lugar* nuevoLugar);
 
     /*Lee el teclado para recibir las Ã³rdenes del usuario y avisa a los individuos y a la barca la letra recibida
 	  llamando al mï¿½todo decirTecla.*/
-    virtual string leerTeclado();
+    virtual void leerTeclado();
+    
+    /*Mueve a un individuo del lugar donde está al lugar vecino*/ 
+	virtual moverIndividuo(Individuo*);
+
+	/*o mueve	a la barca de una orilla a la otra del río*/
+	virtual void moverBarca();
 
     /*Compara la letra recibida de leerTeclado con las letras correspondientes a cada individuo y a la barca y al encontrar una coincidencia, 
 	hace que se se mueva a su lugar vecino. */
-    virtual void jugar (string tecla);
+    virtual void jugar ();
 
     //Muestra el estado del juego en pantalla.
     void estado();
