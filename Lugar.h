@@ -1,7 +1,7 @@
 /*
   Archivo: Individuo.h
   Autores: Andrés Rincón "andres.rincon.lopez@correounivalle.edu.co"
-  		   Jos� David Barona Hern�ndez "jose.david.barona@correounivalle.edu.co"
+  		   Jos� David Barona Hern�ndez "jose.david.barona@correounivalle.edu.co"
   		   Diego Ledesema "diego.ledesma@correounivalle.edu.co"
   Fecha creación: 2020-03-30
   Fecha última modificación: 2020-03-30
@@ -34,11 +34,8 @@ class Lugar
     //Cambia el lugar vecino debido al movimiento
     virtual void cambiarLugarVecino();
 
-    //Suelta un individuo al lugar vecino
-    virtual void soltarALugarVecino(Individuo *individuo);
-
-    //Recibe un individuo del lugar vecino
-    virtual void recibirDelLugarVecino(Individuo *individuo);
+    //Hace que un individuo se mueva de este lugar, al lugar vecino.
+    virtual void moverIndividuo(Individuo *individuo);
 
     //Revisa si se ganó o se perdio la partida
     virtual void revisarPartida();
