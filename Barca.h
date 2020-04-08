@@ -1,5 +1,5 @@
 /*
-  Archivo: Individuo.h
+  Archivo: Barca.h
   Autores: Andr√©s Rinc√≥n "andres.rincon.lopez@correounivalle.edu.co"
   		   JosÈ David Barona Hern·ndez "jose.david.barona@correounivalle.edu.co"
   		   Diego Ledesema "diego.ledesma@correounivalle.edu.co"

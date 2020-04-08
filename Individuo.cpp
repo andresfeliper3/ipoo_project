@@ -9,7 +9,7 @@
 #include "Individuo.h"
 
 //Constructor
-Individuo::Individuo(string nombre, string letraParaMover) : nombre(nombre), letraParaMover(letraParaMover)
+Individuo::Individuo(string nombre, string letraParaMover) : nombre(nombre), letraAsociada(letraAsociada)
 {
     
 }
@@ -29,5 +29,5 @@ void Individuo::agregarPresa(Individuo *presa)
 //Retorna la letra asociada al individuo
 string Individuo::mostrarLetraAsociada()
 {
-    return letraParaMover;
+    return letraAsociada;
 }

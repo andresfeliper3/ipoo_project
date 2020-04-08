@@ -1,5 +1,5 @@
 /*
-  Archivo: Individuo.h
+  Archivo: Orilla.h
   Autores: Andr√©s Rinc√≥n "andres.rincon.lopez@correounivalle.edu.co"
   		   JosÈ David Barona Hern·ndez "jose.david.barona@correounivalle.edu.co"
   		   Diego Ledesema "diego.ledesma@correounivalle.edu.co"
@@ -32,12 +32,13 @@ class Orilla : public Lugar
 
     //Destructor
     virtual ~Orilla();
-	    
-    //Suelta un individuo al lugar vecino
-    virtual void soltarALugarVecino(Individuo *individuo);
 
-    //Recibe un individuo del lugar vecino
-    virtual void recibirDelLugarVecino(Individuo *individuo);
+    //Quita el lugar vecino debido al movimiento
+    virtual void quitarLugarVecino();
+
+    //Pone un lugar vecino debido al movimiento
+    virtual void agregarLugarVecino(Lugar *nuevoLugarVecino);
+
 };
 #else
 class Orilla;

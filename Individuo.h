@@ -23,7 +23,7 @@ class Individuo
 {
     protected:
         string nombre;
-        string letraParaMover; //Letra asociada al movimiento
+        string letraAsociada; //Letra asociada al movimiento
         vector <Individuo *> individuosQuePuedeComer; //Bichos que puede comer
 
     public:
