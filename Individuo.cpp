@@ -20,6 +20,12 @@ Individuo::~Individuo()
 
 }
 
+//Retornar nombre del individuo
+string Individuo::mostrarNombre()
+{
+  return nombre;
+}
+
 //Agrega posibles presas para el Individuo, añadiendo punteros al vector puedeComer
 void Individuo::agregarPresa(Individuo *presa)
 {

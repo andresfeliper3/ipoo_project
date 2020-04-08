@@ -10,7 +10,7 @@
 #include "Lugar.h"
 
 //Constructor
-Lugar::Lugar(Lugar *lugarVecino) : lugarVecino(lugarVecino)
+Lugar::Lugar(string nombre, Lugar *lugarVecino) : nombre(nombre), lugarVecino(lugarVecino)
 {
 
 }
@@ -21,6 +21,11 @@ Lugar::~Lugar()
 
 }
 
+//Retornar nombre del Lugar
+string Lugar::mostrarNombre()
+{
+    return nombre;
+}
 //Agrega un individuo al vector de individuos, si ya no está presente
 void Lugar::agregarIndividuo(Individuo *individuo)
 {
@@ -42,7 +47,7 @@ void Lugar::quitarIndividuo(Individuo *individuo)
 
 
 //Si no tiene un lugar vecino, agrega uno nuevo. Si ya tiene un lugar vecino, lo deja vacío.
-void Lugar::cambiarDeVecino(Lugar *nuevoLugarVecino)
+void Lugar::cambiarDeVecino(Lugar *nuevoLugarVecino = nullptr)
 {
     if(lugarVecino)
     {

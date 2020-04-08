@@ -33,6 +33,9 @@ class Individuo
         //Destructor
         virtual ~Individuo();
 
+        //Retorna el nombre del individuo
+        virtual string mostrarNombre();
+
         //Agrega posibles presas para el Individuo, a�adiendo punteros al vector puedeComer
         virtual void agregarPresa(Individuo *presa);  
 

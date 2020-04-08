@@ -23,14 +23,18 @@ class Lugar
     protected:
         vector <Individuo *> individuosPresentes; //Vector de individuos presentes en el lugar
         Lugar *lugarVecino; //Apunta al lugar vecino
+        string nombre;
     
     public:
     //Constructor
-    Lugar(Lugar *lugarVecino); //Al crear un lugar, se especifica cuál es el vecino inicial
+    Lugar(string nombre, Lugar *lugarVecino); //Al crear un lugar, se especifica cuál es el vecino inicial
 
     //Destructor
     virtual ~Lugar();
 
+    //Retorna el nombre del lugar
+    virtual string mostrarNombre();
+    
     //Agrega un individuo al vector de individuos
     virtual void agregarIndividuo(Individuo *individuo);
 
