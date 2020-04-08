@@ -34,15 +34,15 @@ class Lugar
 
     //Retorna el nombre del lugar
     virtual string mostrarNombre();
-    
+
     //Agrega un individuo al vector de individuos
     virtual void agregarIndividuo(Individuo *individuo);
 
     //Quita un individuo del vector de individuos
     virtual void quitarIndividuo(Individuo *individuo);
 
-    //Cambia el vecino debido al movimiento de la barca
-    virtual void cambiarDeVecino(Lugar *nuevoLugarVecino);
+    //Cambia el vecino debido al movimiento de la barca (esta función es diferente para las clases hijas de Lugar)
+    virtual void cambiarDeVecino(Lugar *nuevoLugarVecino) = 0;
 
     //Pregunta si un individuo está presente en este lugar o no. Si está, retorna su posición, si no retorna -1
     virtual int individuoPresente(Individuo *individuo);

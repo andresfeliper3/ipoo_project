@@ -45,20 +45,6 @@ void Lugar::quitarIndividuo(Individuo *individuo)
     }
 }
 
-
-//Si no tiene un lugar vecino, agrega uno nuevo. Si ya tiene un lugar vecino, lo deja vacío.
-void Lugar::cambiarDeVecino(Lugar *nuevoLugarVecino = nullptr)
-{
-    if(lugarVecino)
-    {
-        lugarVecino = nullptr;
-    }
-    else
-    {
-        lugarVecino = nuevoLugarVecino;
-    }
-}
-
 //Retorna la posición si el individuo ingresado está presente en el vector de individuos de la parte privada, retorna -1 en caso en contrario
 int Lugar::individuoPresente(Individuo *individuo)
 {
