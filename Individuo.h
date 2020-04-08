@@ -1,7 +1,7 @@
 /*
   Archivo: Individuo.h
   Autores: AndrÃ©s RincÃ³n "andres.rincon.lopez@correounivalle.edu.co"
-  		   José David Barona Hernández "jose.david.barona@correounivalle.edu.co"
+  		   Josï¿½ David Barona Hernï¿½ndez "jose.david.barona@correounivalle.edu.co"
   		   Diego Ledesema "diego.ledesma@correounivalle.edu.co"
   Fecha creaciÃ³n: 2020-03-30
   Fecha Ãºltima modificaciÃ³n: 2020-03-30
@@ -24,7 +24,7 @@ class Individuo
     protected:
         string nombre;
         string letraParaMover; //Letra asociada al movimiento
-        vector <Individuo *> puedeComer; //Bichos que puede comer
+        vector <Individuo *> individuosQuePuedeComer; //Bichos que puede comer
 
     public:
         //Constructor
@@ -33,13 +33,14 @@ class Individuo
         //Destructor
         virtual ~Individuo();
 
-        //Agrega posibles presas para el Individuo, añadiendo punteros al vector puedeComer
+        //Agrega posibles presas para el Individuo, aï¿½adiendo punteros al vector puedeComer
         virtual void agregarPresa(Individuo *presa);  
 
         //Retorna la letra asociada al individuo
         virtual string mostrarLetraAsociada();
 
-        //Añadir función "crearBichos" 
+        //Revisa si puede comerse a otro individuo, es decir, si estÃ¡ en el vector de individuos que puede comer
+        virtual bool puedeComer(Individuo *posiblePresa);
 };
 #else
 class Individuo;

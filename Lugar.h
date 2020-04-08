@@ -31,11 +31,23 @@ class Lugar
     //Destructor
     virtual ~Lugar();
 
-    //Cambia el lugar vecino debido al movimiento
-    virtual void cambiarLugarVecino();
+    //Agrega un individuo al vector de individuos
+    virtual void agregarIndividuo(Individuo *individuo);
+
+    //Quita un individuo del vector de individuos
+    virtual void quitarIndividuo(Individuo *individuo);
+
+    //Quita el lugar vecino debido al movimiento
+    virtual void quitarLugarVecino();
+
+    //Pone un lugar vecino debido al movimiento
+    virtual void agregarLugarVecino(Lugar *nuevoLugarVecino);
+
+    //Pregunta si un individuo está presente en este lugar o no. Si está, retorna su posición, si no retorna -1
+    virtual int individuoPresente(Individuo *individuo);
 
     //Hace que un individuo se mueva de este lugar, al lugar vecino.
-    virtual void moverIndividuo(Individuo *individuo);
+    virtual bool moverIndividuo(Individuo *individuo);
 
     //Revisa si se ganó o se perdio la partida
     virtual void revisarPartida();

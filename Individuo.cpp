@@ -23,7 +23,7 @@ Individuo::~Individuo()
 //Agrega posibles presas para el Individuo, añadiendo punteros al vector puedeComer
 void Individuo::agregarPresa(Individuo *presa)
 {
-    puedeComer.push_back(presa);
+    individuosQuePuedeComer.push_back(presa);
 }
 
 //Retorna la letra asociada al individuo
