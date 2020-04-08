@@ -1,6 +1,8 @@
 /*
   Archivo: Lugar.cpp
-  Autores: Andrés Rincón
+  Autores: Andrés Rincón "andres.rincon.lopez@correounivalle.edu.co"
+  		   Jos� David Barona Hern�ndez "jose.david.barona@correounivalle.edu.co"
+  		   Diego Ledesema "diego.ledesma@correounivalle.edu.co"
   Fecha creación: 2020-abril-08
   Fecha última modificación: 2020-abril-08
 */
