@@ -37,3 +37,16 @@ string Individuo::mostrarLetraAsociada()
 {
     return letraAsociada;
 }
+
+//Retorna true si puede comerse a otro individuo, es decir, si está en el vector de individuos que puede comer. Retorna false en caso contrario
+bool Individuo::puedeComer(Individuo *posiblePresa)
+{
+  for(int cualPresa = 0; cualPresa < individuosQuePuedeComer.size(); cualPresa++)
+  {
+    if(individuosQuePuedeComer[cualPresa] == posiblePresa)
+    {
+      return true;
+    }
+  }
+  return false;
+}
