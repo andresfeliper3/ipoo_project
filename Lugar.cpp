@@ -80,13 +80,3 @@ void Lugar::revisarPartida()
  */
 }
 
-//Anuncia la victoria
-string Lugar::victoria()
-{
-    return "¡Has ganado!";
-}
-//Anuncia la derrota
-string Lugar::derrota()
-{
-    return "¡Has perdido!";
-}

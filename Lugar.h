@@ -53,11 +53,6 @@ class Lugar
     //Revisa si se ganó o se perdio la partida
     virtual void revisarPartida();
 
-    //Anuncia la victoria del jugador
-    virtual string victoria();
-
-    //Anuncia la derrota del jugador
-    virtual string derrota();
 };
 #else
 class Lugar;
