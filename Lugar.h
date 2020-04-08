@@ -37,11 +37,8 @@ class Lugar
     //Quita un individuo del vector de individuos
     virtual void quitarIndividuo(Individuo *individuo);
 
-    //Quita el lugar vecino debido al movimiento
-    virtual void quitarLugarVecino();
-
-    //Pone un lugar vecino debido al movimiento
-    virtual void agregarLugarVecino(Lugar *nuevoLugarVecino);
+    //Cambia el vecino debido al movimiento de la barca
+    virtual void cambiarDeVecino(Lugar *nuevoLugarVecino);
 
     //Pregunta si un individuo está presente en este lugar o no. Si está, retorna su posición, si no retorna -1
     virtual int individuoPresente(Individuo *individuo);

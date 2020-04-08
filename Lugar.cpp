@@ -40,19 +40,15 @@ void Lugar::quitarIndividuo(Individuo *individuo)
     }
 }
 
-//Si tiene un lugar vecino, lo quita
-void Lugar::quitarLugarVecino() //POSIBLEMENTE CAMBIAR ESTA FUNCIÓN DE VOID A BOOL
+
+//Si no tiene un lugar vecino, agrega uno nuevo. Si ya tiene un lugar vecino, lo deja vacío.
+void Lugar::cambiarDeVecino(Lugar *nuevoLugarVecino)
 {
     if(lugarVecino)
     {
         lugarVecino = nullptr;
     }
-}
-
-//Si no tiene un lugar vecino, agrega uno
-void Lugar::agregarLugarVecino(Lugar *nuevoLugarVecino)
-{
-    if(!lugarVecino)
+    else
     {
         lugarVecino = nuevoLugarVecino;
     }
