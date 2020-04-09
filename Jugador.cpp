@@ -47,33 +47,78 @@ Jugador::leerTeclado()
 	this->jugar(tecla);
 }
 
+
+
 Jugador::moverIndividuo(Individuo* individuo)
 {
-	for (int n = 0; n < lugares.size(); n++)
+	for (int c = 0; c < lugares.size(); c++)
 	{
-		
+		for (int d = 0; d < individuos.size(); d++)
+		{
+			if (lugares[c]->individuoPresente(individuos[d]) >= 0 )
+			{
+				lugar::moverIndividuo(individuos[d]);
+				break;
+			}
+		}
 	}
 }
 
 
+Jugador::moverBarca()
+{
+	Barca::moverseDeOrilla();	
+}
 
-Jugador::jugar()
+
+
+Jugador::jugar(string tecla)
 {
 	for (int i = 0; i < individuos.size(); i++ )
 	{
-		if (individuos[i]->decirLetra == tecla)
+		if (individuos[i]->mostrarLetraAsociada() == tecla)
 		{
-			this->moverIndividuo();
+			this->moverIndividuo(individuos[i]);
+			break;
 		}
 	}
-	
-	
-	if ( lugares[2]->decirLetra == tecla )
+
+		
+	if ( lugares[2]->mostrarLetraAsociada() == tecla )
 	{
 		this->moverBarca();
 	}
 }
 
+
+
+Jugador::estado()
+{
+	for (int i = 0; i < lugares.size(); i++)
+	{
+		cout << lugares[i]->mostrarNombre() << "\t" << "|" << "\t";
+	}
+	
+	
+	for (int i = 0; i < individuos.size(); i++)
+	{
+		for (int n = 0; n < lugares.size(); n++)
+		{
+			if (lugar[n]->individuoPresente(individuos[i]) >= 0)
+			{
+				cout << individuos[i]->mostrarNombre();
+			}
+			else
+			{
+				cout << "\t";
+			}
+		
+			cout << "\t" << "|" << "\t";
+		}
+		cout << endl;
+	}
+	
+}
 
 
 

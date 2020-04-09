@@ -33,7 +33,7 @@
 class Jugador
 {
   protected:
-    vector <Lugar*> lugares; //Vector con todos los lugares existentes. La barca siempre debe estar en la posiciÃ³n 2 (La Ãºltima).
+    vector <Lugar*> lugares; //Vector con todos los lugares existentes. La barca siempre debe estar en la posición 2 (La última).
     vector <Individuo*> individuos; //Vector de punteros a individuo.
 	string tecla;
 
@@ -50,19 +50,18 @@ class Jugador
     //Pone un lugar en el vector de punteros a lugar.
     virtual void conocerLugar (Lugar* nuevoLugar);
 
-    /*Lee el teclado para recibir las ÃƒÂ³rdenes del usuario y avisa a los individuos y a la barca la letra recibida
-	  llamando al mÃ¯Â¿Â½todo decirTecla.*/
+    /*Lee el teclado para recibir las órdenes del usuario y llama al método this->jugar();*/
     virtual void leerTeclado();
     
-    /*Mueve a un individuo del lugar donde estÃ¡ al lugar vecino*/ 
-	virtual moverIndividuo(Individuo*);
+    /*Mueve a un individuo del lugar donde está, al lugar vecino*/ 
+	virtual void moverIndividuo(Individuo*);
 
-	/*o mueve	a la barca de una orilla a la otra del rÃ­o*/
+	/*o mueve	a la barca de una orilla a la otra del río*/
 	virtual void moverBarca();
 
-    /*Compara la letra recibida de leerTeclado con las letras correspondientes a cada individuo y a la barca y al encontrar una coincidencia, 
-	hace que se se mueva a su lugar vecino. */
-    virtual void jugar ();
+    /*Compara la letra recibida de leerTeclado con las letras correspondientes a cada individuo y a la barca y al encontrar una 
+	coincidencia, hace que se se mueva a su lugar vecino. */
+    virtual void jugar (string tecla);
 
     //Muestra el estado del juego en pantalla.
     void estado();
