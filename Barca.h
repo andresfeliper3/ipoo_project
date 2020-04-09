@@ -24,17 +24,22 @@ class Barca : public Lugar
     protected:
     
     Lugar *LugarVecino;
-    string letraAsociada;
+    string nombreLugar;
     
     public:
     //Constructor
-    Barca(Lugar *lugarVecino); //Al crear un lugar, se especifica cuál es el vecino inicial
+    Barca(string nombreLugar, Lugar *lugarVecino); //Al crear un lugar, se especifica cuál es el vecino inicial
 
     //Destructor
     virtual ~Barca();
 
     //Cambia de orilla (cambia de vecino)
-    virtual void moverseDeOrilla();
+    virtual void cambiarDeVecino(Lugar *nuevoLugarVecino);
+    
+    //Recibe un individuo
+    virtual void agregarIndividuo(Individuo *recibirIndividuo);
+    
+    
 
 
 };

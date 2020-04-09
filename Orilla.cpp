@@ -9,8 +9,8 @@
 
 #include "Orilla.h"
 
-Orilla::Orilla(Lugar *lugarVecino)
-: LugarVecino(lugarVecino)
+Orilla::Orilla(Lugar *lugarVecino, string nombreLugar)
+: LugarVecino(lugarVecino), nombreLugar(nombreLugar)
 {
 	//Constructor
 }
@@ -19,17 +19,16 @@ Orilla::~Orilla()
 {
 	//Destructor
 }
-	    
-//Quita el lugar vecino debido al movimiento
-void Orilla::quitarLugarVecino()
-{
-	this->lugarVecino = nullptr;
-}
 
-//Pone un lugar vecino debido al movimiento
-void Orilla:: agregarLugarVecino(Lugar *nuevoLugarVecino)
+//Cambia de lugar vecino dependiendo del movimiento de la Barca
+void Orilla::cambiarDeVecino(Lugar *nuevoLugarVecino)
 {
-	this->lugarVecino = nuevoLugarVecino;
+	if(lugarVecino)
+	{
+		this->lugarVecino = nullptr; //deja de conocer la Barca
+	}else
+	{
+		this->lugarVecino = nuevoLugarVecino; //Conoce la Barca
+	}
 }
-
 

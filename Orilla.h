@@ -25,19 +25,17 @@ class Orilla : public Lugar
     protected:
     
     Lugar *LugarVecino;
+    string nombreLugar;
     
     public:
     //Constructor
-    Orilla(Lugar *lugarVecino); //Al crear una Orilla, se especifica cuál es el vecino inicial
+    Orilla(string nombreLugar, Lugar *lugarVecino); //Al crear una Orilla, se especifica cuál es el vecino inicial
 
     //Destructor
     virtual ~Orilla();
 
-    //Quita el lugar vecino debido al movimiento
-    virtual void quitarLugarVecino();
-
-    //Pone un lugar vecino debido al movimiento
-    virtual void agregarLugarVecino(Lugar *nuevoLugarVecino);
+    //Cambia de lugar vecino
+    virtual void cambiarDeVecino(Lugar *nuevoLugarVecino);
 
 };
 #else
