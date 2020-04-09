@@ -50,3 +50,4 @@ bool Individuo::puedeComer(Individuo *posiblePresa)
   }
   return false;
 }
+

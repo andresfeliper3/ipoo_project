@@ -78,5 +78,18 @@ void Lugar::revisarPartida()
  /*Realizar un ciclo que busque por todos los individuos del vector.
  Cada individuo debe ver si se puede comer a los demás.
  */
+    //AUMENTAR LA CONDICIÓN, PARA QUE SEA CUANDO EL ROBOT NO ESTÉ PRESENTE
+    for(int cualPredador = 0; cualPredador < individuosPresentes.size(); cualPredador++)
+    {
+        for(int cualPresa = 0; cualPresa < individuosPresentes.size(); cualPresa++)
+        {
+            if(individuosPresentes[cualPredador]->puedeComer(individuosPresentes[cualPresa]))
+            {
+                //PIERDE
+                break;
+                //PENSAR MEJOR ESTA FUNCIÓN
+            }
+        }
+    }
 }
 

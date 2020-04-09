@@ -44,6 +44,7 @@ class Individuo
 
         //Revisa si puede comerse a otro individuo, es decir, si está en el vector de individuos que puede comer
         virtual bool puedeComer(Individuo *posiblePresa);
+
 };
 #else
 class Individuo;

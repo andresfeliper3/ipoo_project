@@ -50,7 +50,7 @@ class Lugar
     //Hace que un individuo se mueva de este lugar, al lugar vecino.
     virtual bool moverIndividuo(Individuo *individuo);
 
-    //Revisa si se ganó o se perdio la partida
+    //Revisa si se ganó o se perdio la partida.
     virtual void revisarPartida();
 
 };
