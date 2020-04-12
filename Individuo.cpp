@@ -4,7 +4,7 @@
   		   Jose David Barona Hernandez "jose.david.barona@correounivalle.edu.co"
   		   Diego Ledesema "diego.ledesma@correounivalle.edu.co"
   Fecha creación: 2020-abril-07
-  Fecha última modificación: 2020-abril-07
+  Fecha última modificación: 2020-abril-12
 */
 #include "Individuo.h"
 
