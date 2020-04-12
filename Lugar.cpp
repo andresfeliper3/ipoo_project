@@ -4,7 +4,7 @@
   		   Jos� David Barona Hern�ndez "jose.david.barona@correounivalle.edu.co"
   		   Diego Ledesema "diego.ledesma@correounivalle.edu.co"
   Fecha creación: 2020-abril-08
-  Fecha última modificación: 2020-abril-08
+  Fecha última modificación: 2020-abril-12
 */
 
 #include "Lugar.h"
@@ -45,6 +45,12 @@ void Lugar::quitarIndividuo(Individuo *individuo)
     }
 }
 
+ //Retorna la cantidad de individuos presentes
+int Lugar::cantidadDeIndividuos()
+{
+    return individuosPresentes.size();
+}
+
 //Retorna la posición si el individuo ingresado está presente en el vector de individuos de la parte privada, retorna -1 en caso en contrario
 int Lugar::individuoPresente(Individuo *individuo)
 {
@@ -72,8 +78,8 @@ bool Lugar::moverIndividuo(Individuo *individuo)
     return false; 
 }
 
-//Revisa si el jugador ha ganado o perdido la partida
-void Lugar::revisarPartida()
+//Revisa si el jugador pierde cuando la barca se aleja de una orilla. Retorna true si pierde, y false si sigue jugando.
+bool Lugar::revisarSiPierde()
 {
  /*Realizar un ciclo que busque por todos los individuos del vector.
  Cada individuo debe ver si se puede comer a los demás.
@@ -85,11 +91,11 @@ void Lugar::revisarPartida()
         {
             if(individuosPresentes[cualPredador]->puedeComer(individuosPresentes[cualPresa]))
             {
-                //PIERDE
-                break;
-                //PENSAR MEJOR ESTA FUNCIÓN
+                return true; 
             }
         }
     }
+    return false;
 }
+
 

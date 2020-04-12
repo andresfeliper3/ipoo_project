@@ -4,7 +4,7 @@
   		   Jos� David Barona Hern�ndez "jose.david.barona@correounivalle.edu.co"
   		   Diego Ledesema "diego.ledesma@correounivalle.edu.co"
   Fecha creación: 2020-03-30
-  Fecha última modificación: 2020-03-30
+  Fecha última modificación: 2020-04-12
 */
 #ifndef LUGAR_HH
 #define LUGAR_HH
@@ -41,6 +41,9 @@ class Lugar
     //Quita un individuo del vector de individuos
     virtual void quitarIndividuo(Individuo *individuo);
 
+    //Retorna la cantidad de individuos presentes
+    virtual int cantidadDeIndividuos();
+
     //Cambia el vecino debido al movimiento de la barca (esta función es diferente para las clases hijas de Lugar)
     virtual void cambiarDeVecino(Lugar *nuevoLugarVecino) = 0;
 
@@ -50,9 +53,10 @@ class Lugar
     //Hace que un individuo se mueva de este lugar, al lugar vecino.
     virtual bool moverIndividuo(Individuo *individuo);
 
-    //Revisa si se ganó o se perdio la partida.
-    virtual void revisarPartida();
+    //Revisa si se pierde la partida. Retorna true si pierde, y false si sigue jugando.
+    virtual bool revisarSiPierde();
 
+    
 };
 #else
 class Lugar;
