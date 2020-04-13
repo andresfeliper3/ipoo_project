@@ -68,7 +68,7 @@ void Jugador::moverIndividuo(Individuo* individuo)
 
 void Jugador::moverBarca()
 {
-	Barca::moverseDeOrilla();	
+	lugares[1]->moverseDeOrilla();	
 	
 	if (lugares[0]->revisarSiPierde() or lugares[2]->revisarSiPierde())
 	{
@@ -98,7 +98,7 @@ void Jugador::jugar(string tecla)
 			}
 		}	
 		
-		if ( lugares[2]->mostrarLetraAsociada() == tecla )
+		if ( lugares[1]->mostrarLetraAsociada() == tecla )
 		{
 			this->moverBarca();
 		}
