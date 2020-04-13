@@ -13,6 +13,7 @@
 Jugador::Jugador()
 {
 	tecla = "";
+	partidaEnCurso = true;
 }
 
 Jugador::~Jugador()
@@ -57,7 +58,7 @@ void Jugador::moverIndividuo(Individuo* individuo)
 		{
 			if (lugares[c]->individuoPresente(individuos[d]) >= 0 )
 			{
-				lugar::moverIndividuo(individuos[d]);
+				lugares[c]->moverIndividuo(individuos[d]);
 				break;
 			}
 		}
@@ -68,25 +69,41 @@ void Jugador::moverIndividuo(Individuo* individuo)
 void Jugador::moverBarca()
 {
 	Barca::moverseDeOrilla();	
+	
+	if (lugares[0]->revisarSiPierde() or lugares[2]->revisarSiPierde())
+	{
+		partidaEnCurso = false;
+		cout << "\n\n¡Has perdido la partida!\n\n";
+	}
+	
+	if (lugares[2]->cantidadDeIndividuos() == individuos.size())
+	{
+		partidaEnCurso = false;
+		cout << "\n\n¡Has ganado la partida!\n\n"	
+	}
 }
 
 
 
 void Jugador::jugar(string tecla)
 {
-	for (int i = 0; i < individuos.size(); i++ )
+	while (partidaEnCurso)
 	{
-		if (individuos[i]->mostrarLetraAsociada() == tecla)
+		for (int i = 0; i < individuos.size(); i++ )
 		{
-			this->moverIndividuo(individuos[i]);
-			break;
-		}
-	}
-
+			if (individuos[i]->mostrarLetraAsociada() == tecla)
+			{
+				this->moverIndividuo(individuos[i]);
+				break;
+			}
+		}	
 		
-	if ( lugares[2]->mostrarLetraAsociada() == tecla )
-	{
-		this->moverBarca();
+		if ( lugares[2]->mostrarLetraAsociada() == tecla )
+		{
+			this->moverBarca();
+		}
+		
+		this->estado();
 	}
 }
 

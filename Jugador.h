@@ -18,14 +18,15 @@
   Clase: Jugador
   Atributos: Vector de punteros que apuntan a Lugar.
             Vector de punteros que contiene los individuos.
-            Puntero que apunta a la barca.
             variable que guarda la letra que recibiÃ¯Â¿Â½.
+            Variable que indica si la partida sigue en curso.
   Funcionalidades:
     - Puede crear individuos.
-    - Puede conocer un nuevo lugar y lo agrega a su vector de punteors a Lugar. La barca siempre debe quedar en la Ãºltima posiciÃ³n (PosiciÃ³n 2).
+    - Puede conocer un nuevo lugar y lo agrega a su vector de punteors a Lugar. La barca siempre debe quedar en la última posiciÃ³n (PosiciÃ³n 2).
     - Puede leer el teclado.
     - Puede mover un individuo al lugar vecino a su lugar actual. 
-	- Puede mover la barca de una orilla a otra del rÃ­o.
+	- Puede mover la barca de una orilla a otra del río, y al mismo tiempo 
+		revisar si ya se ganó o perdió la partida.
     - Puede jugar: comparar cada letra de cada individuo con la letra que recibiÃ³ del usuario para mover al individuo correspondiente.
     - Puede mostrar el estado del juego en la pantalla.
   Relaciones: Conoce a Individuo, conoce a Lugar.
@@ -33,9 +34,11 @@
 class Jugador
 {
   protected:
-    vector <Lugar*> lugares; //Vector con todos los lugares existentes. La barca siempre debe estar en la posición 2 (La última).
+    vector <Lugar*> lugares; /*Vector con todos los lugares existentes, éstos deben ponerse en el siguiente orden: 
+    							Orilla izquierda, barca, orilla derecha.*/
     vector <Individuo*> individuos; //Vector de punteros a individuo.
 	string tecla;
+	bool partidaEnCurso; //Mientras este booleano esté en true, la partida seguirá su curso.
 
   public:
     //Constructor.
@@ -56,7 +59,7 @@ class Jugador
     /*Mueve a un individuo del lugar donde está, al lugar vecino*/ 
 	virtual void moverIndividuo(Individuo*);
 
-	/*o mueve	a la barca de una orilla a la otra del río*/
+	/*o mueve	a la barca de una orilla a la otra del río y revisa si ya se ganó o perdió la partida.*/
 	virtual void moverBarca();
 
     /*Compara la letra recibida de leerTeclado con las letras correspondientes a cada individuo y a la barca y al encontrar una 
