@@ -8,7 +8,7 @@
 */
 
 #include "Jugador.h"
-#include "iomanip"
+
 
 Jugador::Jugador()
 {
@@ -26,13 +26,13 @@ Jugador::~Jugador()
 }
 
 
-Jugador::crearIndividuo(string nombre, string letraParaMover)
+void Jugador::crearIndividuo(string nombre, string letraParaMover)
 {
 	individuos.push_back(new Individuo(nombre, letraParaMover));
 }
 
 
-Jugador::conocerLugar(Lugar* nuevoLugar)
+void Jugador::conocerLugar(Lugar* nuevoLugar)
 {
 	if (nuevoLugar != nullptr)
 	{
@@ -41,7 +41,7 @@ Jugador::conocerLugar(Lugar* nuevoLugar)
 }
 
 
-Jugador::leerTeclado()
+void Jugador::leerTeclado()
 {
 	getline(tecla, cin);
 	this->jugar(tecla);
@@ -49,7 +49,7 @@ Jugador::leerTeclado()
 
 
 
-Jugador::moverIndividuo(Individuo* individuo)
+void Jugador::moverIndividuo(Individuo* individuo)
 {
 	for (int c = 0; c < lugares.size(); c++)
 	{
@@ -65,14 +65,14 @@ Jugador::moverIndividuo(Individuo* individuo)
 }
 
 
-Jugador::moverBarca()
+void Jugador::moverBarca()
 {
 	Barca::moverseDeOrilla();	
 }
 
 
 
-Jugador::jugar(string tecla)
+void Jugador::jugar(string tecla)
 {
 	for (int i = 0; i < individuos.size(); i++ )
 	{
@@ -92,7 +92,7 @@ Jugador::jugar(string tecla)
 
 
 
-Jugador::estado()
+void Jugador::estado()
 {
 	for (int i = 0; i < lugares.size(); i++)
 	{
