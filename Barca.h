@@ -10,9 +10,7 @@
 #ifndef BARCA_HH
 #define BARCA_HH
 
-#include <vector>
 #include "Lugar.h"
-using namespace std;
 
 /*
 Nombre: Barca
@@ -24,11 +22,14 @@ class Barca : public Lugar
     protected:
     
     Lugar *LugarVecino;
+    vector <Lugar*> orillas;
+
     string nombreLugar;
+    string letraAsociada;
     
     public:
     //Constructor
-    Barca(string nombreLugar, Lugar *lugarVecino); //Al crear un lugar, se especifica cuál es el vecino inicial
+    Barca(string nombreLugar, Lugar *lugarVecino, string letraAsociada); //Al crear un lugar, se especifica cuál es el vecino inicial
 
     //Destructor
     virtual ~Barca();
@@ -38,8 +39,12 @@ class Barca : public Lugar
     
     //Recibe un individuo
     virtual void agregarIndividuo(Individuo *recibirIndividuo);
-    
-    
+
+    //Retorna la letra asociada
+    virtual string mostrarLetraAsociada();
+
+    //Agrega las orillas a conocer en el vector de orillas
+    virtual void conocerOrillas(Lugar *orilla);
 
 
 };

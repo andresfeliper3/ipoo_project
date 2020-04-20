@@ -1,13 +1,15 @@
 /*
   Archivo: Jugador.cpp
   Autor: AndrÃ©s RincÃ³n "andres.rincon.lopez@correounivalle.edu.co"
-  		   José David Barona Hernández "jose.david.barona@correounivalle.edu.co"
+  		   Josï¿½ David Barona Hernï¿½ndez "jose.david.barona@correounivalle.edu.co"
   		   Diego Ledesema "diego.ledesma@correounivalle.edu.co"
   Fecha creaciÃ³n: 2020-03-30
   Fecha Ãºltima modificaciÃ³n: 2020-04-03
 */
 
+#include<iostream>
 #include "Jugador.h"
+#include <string>
 
 
 Jugador::Jugador()
@@ -18,7 +20,7 @@ Jugador::Jugador()
 
 Jugador::~Jugador()
 {
-	for (i = 0; i < individuos.size(); i++ )
+	for (int i = 0; i < individuos.size(); i++ )
 	{
 		delete individuos[i];
 		individuos[i] = nullptr;	
@@ -38,13 +40,26 @@ void Jugador::conocerLugar(Lugar* nuevoLugar)
 	if (nuevoLugar != nullptr)
 	{
 		lugares.push_back(nuevoLugar);
+
+    if (lugares.size() == 2)
+    { 
+      lugares[1]->conocerOrillas(lugares[0]);
+      lugares[1]->conocerOrillas(lugares[2]);
+    }
 	}
 }
 
 
+void Jugador::agregarPresa (Individuo* predador, Individuo* presa)
+{
+  predador->agregarPresa(presa);
+}
+
+
+
 void Jugador::leerTeclado()
 {
-	getline(tecla, cin);
+	getline(cin,tecla);
 	this->jugar(tecla);
 }
 
@@ -65,25 +80,27 @@ void Jugador::moverIndividuo(Individuo* individuo)
 	}
 }
 
+//Jugador debe encargarse de que Barca conozca a las dos orillas.
 
+/* REVISAR ESTO XD!
 void Jugador::moverBarca()
 {
-	lugares[1]->moverseDeOrilla();	
+  
+	lugares[1]->cambiarDeVecino(Lugar); //Cambia el lugar vecino de la barca	
 	
 	if (lugares[0]->revisarSiPierde() or lugares[2]->revisarSiPierde())
 	{
 		partidaEnCurso = false;
-		cout << "\n\n¡Has perdido la partida!\n\n";
+		cout << "\n\nï¿½Has perdido la partida!\n\n";
 	}
 	
 	if (lugares[2]->cantidadDeIndividuos() == individuos.size())
 	{
 		partidaEnCurso = false;
-		cout << "\n\n¡Has ganado la partida!\n\n"	
+		cout << "\n\nï¿½Has ganado la partida!\n\n"	
 	}
 }
-
-
+*/
 
 void Jugador::jugar(string tecla)
 {
@@ -111,19 +128,19 @@ void Jugador::jugar(string tecla)
 
 void Jugador::estado()
 {
-	for (int i = 0; i < lugares.size(); i++)
+  //Imprime los nombres de los lugares
+	for (int cualLugar = 0; cualLugar < lugares.size(); cualLugar++)
 	{
-		cout << lugares[i]->mostrarNombre() << "\t" << "|" << "\t";
+		cout <<lugares[cualLugar]->mostrarNombre() << "\t" << "|" << "\t";
 	}
-	
-	
-	for (int i = 0; i < individuos.size(); i++)
+	//Imprime los individuos de la orilla izquierda
+	for (int cualIndividuo = 0; cualIndividuo < individuos.size(); cualIndividuo++)
 	{
 		for (int n = 0; n < lugares.size(); n++)
 		{
-			if (lugar[n]->individuoPresente(individuos[i]) >= 0)
+			if (lugares[n]->individuoPresente(individuos[cualIndividuo]) >= 0)
 			{
-				cout << individuos[i]->mostrarNombre();
+				cout << individuos[cualIndividuo]->mostrarNombre();
 			}
 			else
 			{

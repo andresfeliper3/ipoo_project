@@ -11,6 +11,7 @@
 
 #include <vector>
 #include "Individuo.h"
+
 using namespace std;
 
 /*
@@ -24,6 +25,13 @@ class Lugar
         vector <Individuo *> individuosPresentes; //Vector de individuos presentes en el lugar
         Lugar *lugarVecino; //Apunta al lugar vecino
         string nombre;
+
+         //Agrega un individuo al vector de individuos
+        virtual void agregarIndividuo(Individuo *individuo);
+
+        //Quita un individuo del vector de individuos
+        virtual void quitarIndividuo(Individuo *individuo);
+
     
     public:
     //Constructor
@@ -34,12 +42,6 @@ class Lugar
 
     //Retorna el nombre del lugar
     virtual string mostrarNombre();
-
-    //Agrega un individuo al vector de individuos
-    virtual void agregarIndividuo(Individuo *individuo);
-
-    //Quita un individuo del vector de individuos
-    virtual void quitarIndividuo(Individuo *individuo);
 
     //Retorna la cantidad de individuos presentes
     virtual int cantidadDeIndividuos();

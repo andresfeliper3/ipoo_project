@@ -71,7 +71,7 @@ bool Lugar::moverIndividuo(Individuo *individuo)
     //AGREGAR DESPUÉS QUE SÓLO SI EL ROBOT ESTÁ PRESENTE, SE PUEDE MOVER UN INDIVIDUO
     if(individuoPresente(individuo) != -1) //Si el individuo está presente
     {
-        quitarIndividuo(individuo);
+        this->quitarIndividuo(individuo);
         lugarVecino->agregarIndividuo(individuo);
         return true;
     }
