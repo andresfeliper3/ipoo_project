@@ -9,7 +9,7 @@
 #include "Individuo.h"
 
 //Constructor
-Individuo::Individuo(string nombre, string letraParaMover) : nombre(nombre), letraAsociada(letraAsociada)
+Individuo::Individuo(string nombre, string letraParaMover) : nombre(nombre), letraAsociada(letraParaMover)
 {
     
 }

@@ -11,6 +11,7 @@
 
 #include <vector>
 #include "Individuo.h"
+
 using namespace std;
 
 /*
@@ -21,11 +22,13 @@ Relaciones: Conoce a Lugar.
 class Lugar 
 {
     protected:
+    
         vector <Individuo *> individuosPresentes; //Vector de individuos presentes en el lugar
         Lugar *lugarVecino; //Apunta al lugar vecino
         string nombre;
-    
+
     public:
+
     //Constructor
     Lugar(string nombre, Lugar *lugarVecino); //Al crear un lugar, se especifica cuál es el vecino inicial
 
@@ -35,20 +38,20 @@ class Lugar
     //Retorna el nombre del lugar
     virtual string mostrarNombre();
 
-    //Agrega un individuo al vector de individuos
-    virtual void agregarIndividuo(Individuo *individuo);
-
-    //Quita un individuo del vector de individuos
-    virtual void quitarIndividuo(Individuo *individuo);
-
     //Retorna la cantidad de individuos presentes
     virtual int cantidadDeIndividuos();
 
     //Cambia el vecino debido al movimiento de la barca (esta función es diferente para las clases hijas de Lugar)
-    virtual void cambiarDeVecino(Lugar *nuevoLugarVecino) = 0;
+    virtual void cambiarDeVecino(Lugar *nuevoLugarVecino=nullptr)=0;
 
     //Pregunta si un individuo está presente en este lugar o no. Si está, retorna su posición, si no retorna -1
     virtual int individuoPresente(Individuo *individuo);
+
+     //Agrega un individuo al vector de individuos
+    virtual void agregarIndividuo(Individuo *individuo);
+
+    //Quita un individuo del vector de individuos
+    virtual void quitarIndividuo(Individuo *individuo);
 
     //Hace que un individuo se mueva de este lugar, al lugar vecino.
     virtual bool moverIndividuo(Individuo *individuo);

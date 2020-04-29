@@ -10,6 +10,7 @@
 #ifndef INDIVIDUO_HH
 #define INDIVIDUO_HH
 
+
 #include <vector>
 #include <string>
 using namespace std;
