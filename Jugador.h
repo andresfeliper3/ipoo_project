@@ -13,7 +13,7 @@
 #include "Individuo.h"
 #include "Orilla.h"
 #include "Lugar.h"
-
+#include "Barca.h"
 
 
 /*
@@ -41,6 +41,7 @@ class Jugador
     							Orilla izquierda, barca, orilla derecha.*/
     vector <Individuo*> individuos; //Vector de punteros a individuo.
 	  string tecla;
+    Barca *barca;
 	  bool partidaEnCurso; //Mientras este booleano est� en true, la partida seguir� su curso.
 
   public:
@@ -62,11 +63,11 @@ class Jugador
     /*Lee el teclado para recibir las �rdenes del usuario y llama al m�todo this->jugar();*/
     virtual void leerTeclado();
     
-    /*Mueve a un individuo del lugar donde est�, al lugar vecino*/ 
-	  virtual void moverIndividuo(Individuo*);
+    /*Mueve a un individuo del lugar donde est�, al lugar vecino. Retorna true si logra hacerlo, false en caso contrario.*/ 
+	  virtual bool moverIndividuo(Individuo*);
 
-	  /*o mueve	a la barca de una orilla a la otra del r�o y revisa si ya se gan� o perdi� la partida.*/
-	  virtual void moverBarca();
+	  /* revisa si ya se gan� o perdi� la partida.*/
+	  virtual void revisarPartida();
 
     /*Compara la letra recibida de leerTeclado con las letras correspondientes a cada individuo y a la barca y al encontrar una coincidencia, hace que se se mueva a su lugar vecino. */
     virtual void jugar (string tecla);

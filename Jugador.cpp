@@ -35,94 +35,83 @@ void Jugador::crearIndividuo(string nombre, string letraParaMover)
   	lugares[0]->agregarIndividuo(individuos.back());
 }
 
-
+//Añade un lugar al vector de lugares
 void Jugador::conocerLugar(Lugar* nuevoLugar)
 {
-	if (nuevoLugar != nullptr)
+	if (nuevoLugar)
 	{
 		lugares.push_back(nuevoLugar);
-
-  //  REVISAR
-    if (lugares.size() == 3)
-    { 
-     // lugares[1]->conocerOrillas(lugares[0]);
-     // lugares[1]->conocerOrillas(lugares[2]);
-    }
 	}
 }
 
-
+//Agrega una presa a un predador correspondiente
 void Jugador::agregarPresa (Individuo* predador, Individuo* presa)
 {
   predador->agregarPresa(presa);
 }
 
-
+//Recibe la tecla oprimida por el usuario y la guarda en la parte privada
 void Jugador::leerTeclado()
 {
 	getline(cin,tecla);
-	this->jugar(tecla);
 }
 
-
-void Jugador::moverIndividuo(Individuo* individuo)
+//Mueve un individuo al lugar vecino del lugar que esté.
+bool Jugador::moverIndividuo(Individuo* individuo)
 {
-	for (int c = 0; c < lugares.size(); c++)
+	for (int cualLugar = 0; cualLugar < lugares.size(); cualLugar++)
 	{
-		for (int d = 0; d < individuos.size(); d++)
+		for (int cualIndividuo = 0; cualIndividuo < individuos.size(); cualIndividuo++)
 		{
-			if (lugares[c]->individuoPresente(individuos[d]) >= 0 )
+			if (lugares[cualLugar]->individuoPresente(individuos[cualIndividuo]) >= 0 ) //Revisa si el individuo está presente en el lugar
 			{
-				lugares[c]->moverIndividuo(individuos[d]);
-				break;
+				lugares[cualLugar]->moverIndividuo(individuos[cualIndividuo]);
+				//break; ?
+				return true;
 			}
 		}
 	}
+	return false;
 }
 
 //Jugador debe encargarse de que Barca conozca a las dos orillas.
 
 
-void Jugador::moverBarca()
+void Jugador::revisarPartida()
 {
-  
-	lugares[1]->cambiarDeVecino(); //Cambia el lugar vecino de la barca	
-//ESTO FUNCIONA
-
+	//
+	//lugares[1]->cambiarDeVecino(); //Cambia el lugar vecino de la barca	
 	if (lugares[0]->revisarSiPierde() or lugares[2]->revisarSiPierde())
 	{
     //Perdiste
 		partidaEnCurso = false;
    // perdiste();
-	}
-	
-	if (lugares[2]->cantidadDeIndividuos() == individuos.size())
+	} 
+	else if (lugares[2]->cantidadDeIndividuos() == individuos.size())
 	{
     //Ganaste
 		partidaEnCurso = false;
     //ganaste();
 	}
 }
-//REVISAR Y REACTIVAR ESTA FUNCIÓN
 
+/*Compara la letra recibida de leerTeclado con las letras correspondientes a cada individuo y a la barca y al encontrar una coincidencia, hace que se se mueva a su lugar vecino. */
 void Jugador::jugar(string tecla)
 {
-	while (partidaEnCurso)
+	while (partidaEnCurso) //Mientras la partida esté en curso
 	{
-		for (int i = 0; i < individuos.size(); i++ )
+		if ( barca->mostrarLetraAsociada() == tecla )
 		{
-			if (individuos[i]->mostrarLetraAsociada() == tecla)
+			barca->movimientoDeBarca();
+		}
+		for (int cualIndividuo = 0; cualIndividuo < individuos.size(); cualIndividuo++ )
+		{
+			if (individuos[cualIndividuo]->mostrarLetraAsociada() == tecla)
 			{
-				this->moverIndividuo(individuos[i]);
+				this->moverIndividuo(individuos[cualIndividuo]);
 				break;
 			}
-		}	
-		
-		if ( "B" == tecla )
-		{
-			this->moverBarca();
-		}
-		
+		}			
 		this->estado();
 	}
 }
