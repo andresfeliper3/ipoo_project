@@ -10,7 +10,7 @@
 #include "Lugar.h"
 
 //Constructor
-Lugar::Lugar(string nombre, Lugar *lugarVecino) : nombre(nombre), lugarVecino(lugarVecino)
+Lugar::Lugar(string nombre, Lugar *lugarVecino, string letraAsociada) : nombre(nombre), lugarVecino(lugarVecino)
 {
 
 }
@@ -91,6 +91,7 @@ bool Lugar::revisarSiPierde()
         {
             if(individuosPresentes[cualPredador]->puedeComer(individuosPresentes[cualPresa]))
             {
+                //break; ?
                 return true; 
             }
         }

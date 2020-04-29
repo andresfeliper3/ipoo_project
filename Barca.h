@@ -34,16 +34,16 @@ class Barca : public Lugar
     virtual ~Barca();
 
     //Cambia de orilla (cambia de vecino)
-    virtual void cambiarDeVecino(Lugar *nuevoLugarVecino=nullptr);
-    
-    //Recibe un individuo
-    //virtual void agregarIndividuo(Individuo *recibirIndividuo);
+    virtual void cambiarDeVecino();
 
     //Retorna la letra asociada
     virtual string mostrarLetraAsociada();
 
     //Agrega las orillas a conocer en el vector de orillas
     virtual void conocerOrillas(Lugar *orilla);
+
+    //Mueve la barca de una orilla a la otra
+    virtual void movimientoDeBarca();
 
 
 };

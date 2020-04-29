@@ -56,7 +56,7 @@ class Jugador
     //Pone un lugar en el vector de punteros a lugar.
     virtual void conocerLugar (Lugar* nuevoLugar);
 
-    //Le agrega un individuo al predador a su vector de presas 
+    //Le agrega un individuo al predador a su vector de presas //POSIBLEMENTE NO NECESARIA
     virtual void agregarPresa(Individuo* predador, Individuo* presa);
 
     /*Lee el teclado para recibir las �rdenes del usuario y llama al m�todo this->jugar();*/

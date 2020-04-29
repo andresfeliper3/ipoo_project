@@ -9,7 +9,7 @@
 
 #include "Orilla.h"
 
-Orilla::Orilla(string nombreLugar,Lugar *lugarVecino): Lugar(nombreLugar, lugarVecino)
+Orilla::Orilla(string nombreLugar, Lugar *lugarVecino): Lugar(nombreLugar, lugarVecino)
 
 {
 	//Constructor
@@ -27,7 +27,7 @@ void Orilla::cambiarDeVecino(Lugar *nuevoLugarVecino)
 	{
 		this->lugarVecino = nullptr; //deja de conocer la Barca
 	}
-  else
+  	else
 	{
 		this->lugarVecino = nuevoLugarVecino; //Conoce la Barca
 	}

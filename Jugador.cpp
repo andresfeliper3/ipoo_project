@@ -11,18 +11,19 @@
 #include "Jugador.h"
 #include <string>
 
-
+//Constructor
 Jugador::Jugador(bool partidaEnCurso) : partidaEnCurso(partidaEnCurso)
 {
 	tecla = "";
 }
-
+//Destructor
 Jugador::~Jugador()
 {
-	for (int i = 0; i < individuos.size(); i++ )
+	//Destruye todos los individuos creados para la partida
+	for (int cualIndividuo = 0; cualIndividuo < individuos.size(); cualIndividuo++ )
 	{
-		delete individuos[i];
-		individuos[i] = nullptr;	
+		delete individuos[cualIndividuo];
+		individuos[cualIndividuo] = nullptr;	
 	}	
 	
 }
@@ -31,7 +32,7 @@ Jugador::~Jugador()
 void Jugador::crearIndividuo(string nombre, string letraParaMover)
 {
 	individuos.push_back(new Individuo(nombre, letraParaMover)); 
-  lugares[0]->agregarIndividuo(individuos.back());
+  	lugares[0]->agregarIndividuo(individuos.back());
 }
 
 

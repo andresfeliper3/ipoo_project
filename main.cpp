@@ -33,6 +33,7 @@ int main()
   */
   Orilla orillaIzquierda("Orilla",nullptr); //CREA ORILLA IZQ, VECINO NULO
   Barca barca("Barca", &orillaIzquierda,"B"); //CREAR BARCA,VECINO INICIAL, LETRA ASOCIADA
+  orillaIzquierda.cambiarDeVecino(&barca);
   Orilla orillaDerecha("Orilla Derecha", nullptr); //CREAR ORILLA DER, VECINO NULO
 
   /***********************************************************************

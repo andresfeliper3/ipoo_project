@@ -9,12 +9,11 @@
 
 #include "Barca.h"
 
-
-Barca::Barca(string nombreLugar,Lugar *lugarVecino, string letraAsociada): Lugar(nombreLugar, lugarVecino)
+//Constructor
+Barca::Barca(string nombreLugar,Lugar *lugarVecino, string letraAsociada): Lugar(nombreLugar, lugarVecino, letraAsociada)
 {
-	//Constructor
-  this->letraAsociada = letraAsociada;
-  lugarVecino->cambiarDeVecino(this);//  Le avisa a la orilla que tiene como vecina, que son vecinas.
+	
+ // lugarVecino->cambiarDeVecino(this);//  Le avisa a la orilla que tiene como vecina, que son vecinas.
 }
 
 Barca::~Barca()
@@ -22,36 +21,33 @@ Barca::~Barca()
 	//Destructor
 }
 
-//Cambiar de Orilla
-void Barca::cambiarDeVecino(Lugar *nuevoLugarVecino)
+//Mueve la barca de una orilla a otra
+void Barca::movimientoDeBarca() 
 {
-	for(int cualIndividuo = 0;cualIndividuo < individuosPresentes.size(); cualIndividuo++)
+	for(int cualIndividuo = 0; cualIndividuo < individuosPresentes.size(); cualIndividuo++)
 	{
-		if(individuosPresentes[cualIndividuo]->mostrarLetraAsociada() == "R") //Reconoce si el robot está en la orilla 
+		if(individuosPresentes[cualIndividuo]->mostrarLetraAsociada() == "R") //Reconoce si el robot está en la barca
 		{
-        orillas[0]->cambiarDeVecino(this); //La orilla izquierda cambia de vecino.
-        orillas[1]->cambiarDeVecino(this); //La orilla derecha cambia de vecino.
-   	}
+			this->cambiarDeVecino();
+        	orillas[0]->cambiarDeVecino(this); //La orilla izquierda cambia de vecino.
+        	orillas[1]->cambiarDeVecino(this); //La orilla derecha cambia de vecino.			
+   		}
   }	
 }
-
-/*
-REVISAR ESTO!!!!
-//Recibir individuo
-void Barca::agregarIndividuo(Individuo *recibirIndividuo)
+//Cambia el vecino de la barca entre las dos posibilidades que tiene: las dos orillas
+void Barca::cambiarDeVecino()
 {
-	//La barca s�lo puede transportar un individuo aparte del Robot
-	if(individuosPresentes.size() <=1)
+	if(this->lugarVecino == this->orillas[0]) //Si su vecino es la orilla izquierda, pasa a ser la orilla derecha
 	{
-		individuosPresentes.push_back(recibirIndividuo);
-		recibirIndividuo->moverIndividuo(this);
-    this->moverIndividuo(recibirIndividuo);
+		this->lugarVecino = orillas[1];
 	}
+	else if(this->lugarVecino == this->orillas[1]) //Si su vecino es la orilla derecha, pasa a ser la orilla izquierda
+	{
+		this->lugarVecino = orillas[0];
+	}
+}
 
-  //
-} 
-*/
-
+//Muestra la letra asociada a la barca
 string Barca::mostrarLetraAsociada()
 {
   return letraAsociada;
