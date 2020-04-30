@@ -28,10 +28,10 @@ int main()
   /*
     CREAR LA BARCA Y LAS ORILLAS
   */
-  Orilla orillaIzquierda("Orilla",nullptr); //CREA ORILLA IZQ, VECINO NULO
-  Barca barca("Barca", &orillaIzquierda,"B"); //CREAR BARCA,VECINO INICIAL, LETRA ASOCIADA
+  Orilla orillaIzquierda("IZQUIERDA",nullptr); //CREA ORILLA IZQ, VECINO NULO
+  Barca barca("BARCA", &orillaIzquierda,"B"); //CREAR BARCA,VECINO INICIAL, LETRA ASOCIADA
   orillaIzquierda.cambiarDeVecino(&barca);
-  Orilla orillaDerecha("Orilla Derecha", nullptr); //CREAR ORILLA DER, VECINO NULO
+  Orilla orillaDerecha("DERECHA", nullptr); //CREAR ORILLA DER, VECINO NULO
 
   /***********************************************************************
   CREAR JUGADOR
@@ -64,7 +64,7 @@ int main()
   player.agregarPresa(zorro, conejo);
   player.agregarPresa(conejo, lechuga);
 
-  //
+  //  
 
   
 

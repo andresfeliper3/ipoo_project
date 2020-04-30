@@ -35,7 +35,7 @@ void Barca::movimientoDeBarca()
   }	
 }
 //Cambia el vecino de la barca entre las dos posibilidades que tiene: las dos orillas
-void Barca::cambiarDeVecino()
+void Barca::cambiarDeVecino(Lugar *nuevoLugarVecino /* = nullptr*/) //PREGUNTAR
 {
 	if(this->lugarVecino == this->orillas[0]) //Si su vecino es la orilla izquierda, pasa a ser la orilla derecha
 	{

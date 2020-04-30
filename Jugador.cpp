@@ -148,17 +148,17 @@ void Jugador::estado()
 	for (int cualLugar = 0; cualLugar < lugares.size()+1; cualLugar++)
 	{
 		if(cualLugar != 2 && cualLugar != 3) //Orilla izq. y barca
-    {
-      cout <<lugares[cualLugar]->mostrarNombre() << "        "<< "|" << "        ";
-    }
-    else if(cualLugar == 2) //Espacio vacío
-    {
-      cout << "        "<< "|" << "        ";
-    }
-    else //Orilla derecha
-    {
-      cout << lugares[cualLugar-1]->mostrarNombre() << endl << endl;
-    }
+    	{
+      		cout <<lugares[cualLugar]->mostrarNombre() << "        "<< "|" << "        ";
+    	}
+    	else if(cualLugar == 2) //Espacio vacío
+    	{
+      		cout << "        "<< "|" << "        ";
+    	}
+    	else //Orilla derecha
+    	{
+     		 cout << lugares[cualLugar-1]->mostrarNombre() << endl << endl;
+    	}
 
 	}
 	//Imprime los individuos de la orilla izquierda
