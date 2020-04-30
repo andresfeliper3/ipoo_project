@@ -59,3 +59,9 @@ void Barca::conocerOrillas(Lugar *orilla)
   orillas.push_back(orilla);
 }
 
+//Función de relleno
+void Barca::cambiarDeVecino(Lugar *nuevoLugarVecino) 
+{
+
+}
+

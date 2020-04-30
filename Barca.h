@@ -44,6 +44,9 @@ class Barca : public Lugar
 
     //Mueve la barca de una orilla a la otra
     virtual void movimientoDeBarca();
+   
+    //Función de relleno
+    virtual void cambiarDeVecino(Lugar *nuevoLugarVecino); 
 
 
 };

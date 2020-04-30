@@ -44,7 +44,7 @@ class Lugar
 
     //Función virtual
     //Cambia el vecino debido al movimiento de la barca (esta función es diferente para las clases hijas de Lugar)
-    virtual void cambiarDeVecino(Lugar *nuevoLugarVecino = nullptr) const;
+    virtual void cambiarDeVecino(Lugar *nuevoLugarVecino = nullptr) = 0;
 
     //Pregunta si un individuo está presente en este lugar o no. Si está, retorna su posición, si no retorna -1
     virtual int individuoPresente(Individuo *individuo);
