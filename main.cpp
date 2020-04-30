@@ -64,11 +64,6 @@ int main()
   player.agregarPresa(zorro, conejo);
   player.agregarPresa(conejo, lechuga);
 
-  //  
-
-  
-
-  cout << "\x1B[2J\x1B[H";//Limpia la consola para dar inicio a juego
 
 while(player.mostrarSiPartidaEnCurso()) //Mientras la partida esté en curso
 {

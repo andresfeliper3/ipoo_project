@@ -78,6 +78,14 @@ bool Lugar::moverIndividuo(Individuo *individuo)
     return false; 
 }
 
+//Retorna true si el lugar un lugar vecino, false en caso contrario
+bool Lugar::tieneVecino()
+{
+    if(lugarVecino)
+        return true;
+    return false;
+}
+
 //Revisa si el jugador pierde cuando la barca se aleja de una orilla. Retorna true si pierde, y false si sigue jugando.
 bool Lugar::revisarSiPierde()
 {

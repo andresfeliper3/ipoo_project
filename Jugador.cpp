@@ -135,7 +135,6 @@ void Jugador::jugar(string tecla)
 				break;
 			}
 		}			
-		this->estado();
 	}
 }
 
@@ -144,39 +143,61 @@ void Jugador::jugar(string tecla)
 void Jugador::estado()
 {
   const int espaciado = lugares[0]->mostrarNombre().size();
+  bool orillaIzquierdaTieneVecino = true;
   //Imprime los nombres de los lugares
-	for (int cualLugar = 0; cualLugar < lugares.size()+1; cualLugar++)
+	for (int cualLugar = 0; cualLugar < lugares.size(); cualLugar++)
 	{
-		if(cualLugar != 2 && cualLugar != 3) //Orilla izq. y barca
-    	{
-      		cout <<lugares[cualLugar]->mostrarNombre() << "        "<< "|" << "        ";
-    	}
-    	else if(cualLugar == 2) //Espacio vacío
-    	{
-      		cout << "        "<< "|" << "        ";
-    	}
-    	else //Orilla derecha
-    	{
-     		 cout << lugares[cualLugar-1]->mostrarNombre() << endl << endl;
-    	}
-
+		//Revisa si se está mirando la orilla derecha
+		if(cualLugar == 2)
+		{
+			if(!lugares[cualLugar]->tieneVecino()) //Si la orilla derecha no tiene vecino
+			{
+				orillaIzquierdaTieneVecino = true;
+				cout << "| \t \t \t |";
+			}
+		}
+		cout << "|\t" << lugares[cualLugar]->mostrarNombre() << "\t  "; //Imprime el nombre del lugar
+		if(cualLugar == 0) //Revisa si se está mirando la orilla izquierda
+		{
+			if(!lugares[cualLugar]->tieneVecino()) //Si la orilla izquierda no tiene vecino
+			{
+				orillaIzquierdaTieneVecino = false;
+				cout << "| \t \t \t|";
+			}
+		}
 	}
-	//Imprime los individuos de la orilla izquierda
+	cout << endl; 
+
+	//Imprime a los individuos por orden según el vector de individuos. NO ME GUSTÓ MUCHO
 	for (int cualIndividuo = 0; cualIndividuo < individuos.size(); cualIndividuo++)
 	{
-		for (int cualLugar = 0; cualLugar < lugares.size(); cualLugar++)
+		if(lugares[0]->individuoPresente(individuos[cualIndividuo])) //Si el individuo está en la orilla izquierda
 		{
-			if (lugares[cualLugar]->individuoPresente(individuos[cualIndividuo]))
+			cout << " | \t  " << individuos[cualIndividuo]->mostrarNombre() << "\t ";		
+			cout << "| \t \t \t| \t \t \t | \t \t \t " << endl;
+		} 
+		else if(lugares[1]->individuoPresente(individuos[cualIndividuo])) //Si el individuo está en la barca
+		{
+			if(orillaIzquierdaTieneVecino) //Si la barca está al lado izquiedo
 			{
-				cout << individuos[cualIndividuo]->mostrarNombre();
+				cout << "| \t \t \t |";
+				cout << " \t " << individuos[cualIndividuo]->mostrarNombre() << "\t ";
+				cout << "| \t \t \t | \t \t \t |" << endl;
 			}
-			else
+			else //Si la barca está al lado derecho
 			{
-				cout << "\t";
+				cout << "| \t \t \t | \t \t \t |";
+				cout << " \t " << individuos[cualIndividuo]->mostrarNombre() << "\t ";
+				cout << "| \t \t \t |" << endl;
 			}
-		
-			cout << "        " << " | " << "        ";
 		}
+		else if(lugares[2]->individuoPresente(individuos[cualIndividuo])) //Si el individuo está en la orilla derecha
+		{
+			cout << "| \t \t \t| \t \t \t | \t \t \t ";
+			cout << " | \t  " << individuos[cualIndividuo]->mostrarNombre() << "\t " << endl;   
+
+		}
+		
 		cout << endl << endl;
 	}
   //Imprime las instrucciones para mover los individuos

@@ -58,6 +58,9 @@ class Lugar
     //Hace que un individuo se mueva de este lugar, al lugar vecino.
     virtual bool moverIndividuo(Individuo *individuo);
 
+    //Retorna true si tiene un lugar vecino, false en caso contrario
+    virtual bool tieneVecino();
+
     //Revisa si se pierde la partida. Retorna true si pierde, y false si sigue jugando.
     virtual bool revisarSiPierde();
 
