@@ -57,6 +57,9 @@ class Jugador
     //Pone un lugar en el vector de punteros a lugar.
     virtual void conocerLugar (Lugar* nuevoLugar);
 
+    //Conoce a la barca por aparte
+    virtual void conocerBarca (Barca* barca);
+
     //Le agrega un individuo al predador a su vector de presas //POSIBLEMENTE NO NECESARIA
     virtual void agregarPresa(Individuo* predador, Individuo* presa);
 
@@ -68,6 +71,12 @@ class Jugador
 
 	  /* revisa si ya se gan� o perdi� la partida.*/
 	  virtual void revisarPartida();
+
+    //Mostrar tecla oprimida
+    virtual string mostrarTecla();
+
+    //Mostrar si la partida está en curso
+    virtual bool mostrarSiPartidaEnCurso();
 
     /*Compara la letra recibida de leerTeclado con las letras correspondientes a cada individuo y a la barca y al encontrar una coincidencia, hace que se se mueva a su lugar vecino. */
     virtual void jugar (string tecla);

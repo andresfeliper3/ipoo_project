@@ -17,10 +17,7 @@ El jugador debe controlar que órdenes dar, para lograr que el robot transporte 
 */
 #include <iostream>
 #include "Jugador.h"
-#include "Barca.h"
-#include "Individuo.h"
-#include "Lugar.h"
-#include "Orilla.h"
+
 #include <vector>
 
 
@@ -48,9 +45,10 @@ int main()
   player.conocerLugar(&orillaIzquierda);
   player.conocerLugar(&barca);
   player.conocerLugar(&orillaDerecha);
+  player.conocerBarca(&barca);
   
 
-  string tipoDeIndividuo, id, interaccion = "s";
+  string tipoDeIndividuo, teclaAsociada, interaccion = "s";
 
      cout << "Cree los individuos que sean necesarios, tenga encuenta que entre más individuos cree, mayor será la dificultad" << endl << "Los individuos que puedes crear son los siguientes:" << endl << endl << "Robot" << endl << endl << "Zorro"<< endl << endl << "Conejo" << endl << endl << "Lechuga" << endl << endl;
 
@@ -60,35 +58,27 @@ int main()
     getline(cin,tipoDeIndividuo);
 
     cout << "Asígnele una letra al individuo que creó anteriormente: " <<endl;
-    getline(cin,id);
+    getline(cin,teclaAsociada);
     
-    player.crearIndividuo(tipoDeIndividuo,id); //Aqui se agrega el individuo al vector de individuos de jugador
+    player.crearIndividuo(tipoDeIndividuo,teclaAsociada); //Aqui se agrega el individuo al vector de individuos de jugador
 
-    cout << "Usted ha creado un individuo tipo: " << tipoDeIndividuo << ", y será identificado con la letra: " << id << endl << "¿Desea crear otro individuo? teclee S para crear otro individuo y cualquier otra cosa para no crear más individuos" << endl << endl;
+    cout << "Usted ha creado un individuo tipo: " << tipoDeIndividuo << ", y será identificado con la letra: " << teclaAsociada << endl << "¿Desea crear otro individuo? teclee S para crear otro individuo y cualquier otra cosa para no crear más individuos" << endl << endl;
     getline(cin,interaccion);
 
   }
 
   cout << "\x1B[2J\x1B[H";//Limpia la consola para dar inicio a juego
 
-
-
-  string orden = "";
-  while(orden != "parar")
-  {
-    cout << endl << "meta tecla" << endl;
-    getline(cin,orden);
-    player.jugar(orden);
-  }
+while(player.mostrarSiPartidaEnCurso()) //Mientras la partida esté en curso
+{
+  player.estado();
+  player.leerTeclado();
+  player.jugar(player.mostrarTecla());
+}
 
 
   return 0;
   
-
-  /*
-  JUEGO COMO TAL  xddd lo anterior es solo establecer el juego, cantidad de individuos y sus respectivas teclas, a partir de aqui es el juego.
-  OF KORS AQUÍ VA EL JUEGO :V
-  */
 }
 
 

@@ -44,6 +44,15 @@ void Jugador::conocerLugar(Lugar* nuevoLugar)
 	}
 }
 
+//Añade la barca a la parte privada
+void Jugador::conocerBarca(Barca* barca)
+{
+	if(barca)
+	{
+		this->barca = barca;
+	}
+}
+
 //Agrega una presa a un predador correspondiente
 void Jugador::agregarPresa (Individuo* predador, Individuo* presa)
 {
@@ -65,7 +74,7 @@ bool Jugador::moverIndividuo(Individuo* individuo)
 		{
 			if (lugares[cualLugar]->individuoPresente(individuos[cualIndividuo]) >= 0 ) //Revisa si el individuo está presente en el lugar
 			{
-				lugares[cualLugar]->moverIndividuo(individuos[cualIndividuo]);
+				lugares[cualLugar]->moverIndividuo(individuos[cualIndividuo]); //NOTA: ESTA FUNCIÓN YA REVISA QUE EL INDIVIDUO ESTÉ PRESENTE
 				//break; ?
 				return true;
 			}
@@ -95,12 +104,24 @@ void Jugador::revisarPartida()
 	}
 }
 
+//Mostrar la tecla oprimida por el usuario
+string Jugador::mostrarTecla()
+{
+	return tecla;
+}
+
+//Mostrar si la partida está en curso
+bool Jugador::mostrarSiPartidaEnCurso()
+{
+	return partidaEnCurso;
+}
+
 /*Compara la letra recibida de leerTeclado con las letras correspondientes a cada individuo y a la barca y al encontrar una coincidencia, hace que se se mueva a su lugar vecino. */
 void Jugador::jugar(string tecla)
 {
-	while (partidaEnCurso) //Mientras la partida esté en curso
+	if (partidaEnCurso) //Mientras la partida esté en curso
 	{
-		if ( barca->mostrarLetraAsociada() == tecla )
+		if ( barca->mostrarLetraAsociada() == tecla ) //Si el usuario ha marcado la tecla de la barca, la barca se mueve
 		{
 			barca->movimientoDeBarca();
 		}
@@ -166,7 +187,7 @@ void Jugador::estado()
     
   }
 	
-  cout << "Pulse B para mover la barca de una orilla a la otra" << endl;
+  cout << "Pulse " << this->barca->mostrarLetraAsociada() << " para mover la barca de una orilla a la otra" << endl;
 
 }
 

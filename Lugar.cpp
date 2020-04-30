@@ -10,7 +10,7 @@
 #include "Lugar.h"
 
 //Constructor
-Lugar::Lugar(string nombre, Lugar *lugarVecino, string letraAsociada) : nombre(nombre), lugarVecino(lugarVecino)
+Lugar::Lugar(string nombre, Lugar *lugarVecino, string letraAsociada) : nombre(nombre), lugarVecino(lugarVecino), letraAsociada(letraAsociada)
 {
 
 }
@@ -98,6 +98,8 @@ bool Lugar::revisarSiPierde()
     }
     return false;
 }
+
+
 
 
 

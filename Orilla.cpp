@@ -21,7 +21,7 @@ Orilla::~Orilla()
 }
 
 //Cambia de lugar vecino dependiendo del movimiento de la Barca
-void Orilla::cambiarDeVecino(Lugar *nuevoLugarVecino)
+void Orilla::cambiarDeVecino(Lugar *nuevoLugarVecino) 
 {
 	if(lugarVecino)
 	{

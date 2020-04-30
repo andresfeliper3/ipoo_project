@@ -10,7 +10,7 @@
 #include "Barca.h"
 
 //Constructor
-Barca::Barca(string nombreLugar,Lugar *lugarVecino, string letraAsociada): Lugar(nombreLugar, lugarVecino, letraAsociada)
+Barca::Barca(string nombreLugar, Lugar *lugarVecino, string letraAsociada): Lugar(nombreLugar, lugarVecino, letraAsociada)
 {
 	
  // lugarVecino->cambiarDeVecino(this);//  Le avisa a la orilla que tiene como vecina, que son vecinas.
@@ -58,3 +58,4 @@ void Barca::conocerOrillas(Lugar *orilla)
 {
   orillas.push_back(orilla);
 }
+

@@ -26,6 +26,7 @@ class Lugar
         vector <Individuo *> individuosPresentes; //Vector de individuos presentes en el lugar
         Lugar *lugarVecino; //Apunta al lugar vecino
         string nombre;
+        string letraAsociada;
         
     public:
 
@@ -43,7 +44,7 @@ class Lugar
 
     //Función virtual
     //Cambia el vecino debido al movimiento de la barca (esta función es diferente para las clases hijas de Lugar)
-    virtual void cambiarDeVecino(Lugar *nuevoLugarVecino = nullptr) = 0;
+    virtual void cambiarDeVecino(Lugar *nuevoLugarVecino = nullptr) const;
 
     //Pregunta si un individuo está presente en este lugar o no. Si está, retorna su posición, si no retorna -1
     virtual int individuoPresente(Individuo *individuo);
