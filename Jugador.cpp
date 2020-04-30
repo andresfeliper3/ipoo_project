@@ -29,10 +29,12 @@ Jugador::~Jugador()
 }
 
 //Crea un individuo, y lo añade al vector de individuos y a la orilla izquierda
-void Jugador::crearIndividuo(string nombre, string letraParaMover)
+Individuo* Jugador::crearIndividuo(string nombre, string letraParaMover)
 {
-	individuos.push_back(new Individuo(nombre, letraParaMover)); 
-  	lugares[0]->agregarIndividuo(individuos.back());
+	Individuo* nuevoIndividuo = new Individuo(nombre, letraParaMover);
+	individuos.push_back(nuevoIndividuo); 
+  	lugares[0]->agregarIndividuo(nuevoIndividuo);
+	return nuevoIndividuo;
 }
 
 //Añade un lugar al vector de lugares

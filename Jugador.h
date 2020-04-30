@@ -52,7 +52,7 @@ class Jugador
     virtual ~Jugador();
 
     //Crea un objeto de la clase Individuo y le asocia una letraParaMover.
-    virtual void crearIndividuo(string nombre, string letraParaMover);
+    virtual Individuo* crearIndividuo(string nombre, string letraParaMover);
     
     //Pone un lugar en el vector de punteros a lugar.
     virtual void conocerLugar (Lugar* nuevoLugar);

@@ -40,32 +40,33 @@ int main()
 
   PD: Por lo pronto hay mucho desorden, pero es fácil de reubicar para que quede bonito xd
   ***********************************************************************/
+ //Creación de Jugador
 
   Jugador player(true);
+
+  //Jugador conoce a los lugares
   player.conocerLugar(&orillaIzquierda);
   player.conocerLugar(&barca);
   player.conocerLugar(&orillaDerecha);
+  //Jugador conoce a la barca por aparte
   player.conocerBarca(&barca);
+  //La barca conoce a las orillas
+  barca.conocerOrillas(&orillaIzquierda);
+  barca.conocerOrillas(&orillaDerecha);
+
+  //Jugador crea a los individuos
+  Individuo* robot = player.crearIndividuo("Robot", "R");
+  Individuo* zorro = player.crearIndividuo("Zorro", "Z");
+  Individuo* conejo = player.crearIndividuo("Conejo", "C");
+  Individuo* lechuga = player.crearIndividuo("Lechuga", "L");
+
+  //Se le asignan las posibles presas a los individuos
+  player.agregarPresa(zorro, conejo);
+  player.agregarPresa(conejo, lechuga);
+
+  //
+
   
-
-  string tipoDeIndividuo, teclaAsociada, interaccion = "s";
-
-     cout << "Cree los individuos que sean necesarios, tenga encuenta que entre más individuos cree, mayor será la dificultad" << endl << "Los individuos que puedes crear son los siguientes:" << endl << endl << "Robot" << endl << endl << "Zorro"<< endl << endl << "Conejo" << endl << endl << "Lechuga" << endl << endl;
-
-  while(interaccion == "s" || interaccion == "S")
-  {
-    cout << "Por favor escriba el tipo de individuo que desea crear" << endl;
-    getline(cin,tipoDeIndividuo);
-
-    cout << "Asígnele una letra al individuo que creó anteriormente: " <<endl;
-    getline(cin,teclaAsociada);
-    
-    player.crearIndividuo(tipoDeIndividuo,teclaAsociada); //Aqui se agrega el individuo al vector de individuos de jugador
-
-    cout << "Usted ha creado un individuo tipo: " << tipoDeIndividuo << ", y será identificado con la letra: " << teclaAsociada << endl << "¿Desea crear otro individuo? teclee S para crear otro individuo y cualquier otra cosa para no crear más individuos" << endl << endl;
-    getline(cin,interaccion);
-
-  }
 
   cout << "\x1B[2J\x1B[H";//Limpia la consola para dar inicio a juego
 
