@@ -9,7 +9,7 @@
 #include "Individuo.h"
 
 //Constructor
-Individuo::Individuo(string nombre, string letraParaMover) : nombre(nombre), letraAsociada(letraParaMover)
+Individuo::Individuo(string nombre, string letraParaMover, bool esRobot) : nombre(nombre), letraAsociada(letraParaMover), esRobot(esRobot)
 {
     
 }
@@ -39,12 +39,23 @@ void Individuo::agregarPresa(Individuo *presa)
 //Retorna la letra asociada al individuo
 string Individuo::mostrarLetraAsociada()
 {
-    return letraAsociada;
+    return this->letraAsociada;
+}
+
+//Retorna true si es un robot y false en caso contrario
+bool Individuo::esUnRobot()
+{
+  return this->esRobot;
 }
 
 //Retorna true si puede comerse a otro individuo, es decir, si está en el vector de individuos que puede comer. Retorna false en caso contrario
 bool Individuo::puedeComer(Individuo *posiblePresa)
 {
+  //Retorna false, pues un individuo no puede comerse a sí mismo
+  if(this == posiblePresa)
+    return false;
+
+  //Revisa los individuos que puede comer
   for(int cualPresa = 0; cualPresa < individuosQuePuedeComer.size(); cualPresa++)
   {
     if(individuosQuePuedeComer[cualPresa] == posiblePresa)

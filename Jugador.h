@@ -42,6 +42,7 @@ class Jugador
     vector <Individuo*> individuos; //Vector de punteros a individuo.
 	  string tecla;
     Barca *barca;
+    Individuo *robot;
 	  bool partidaEnCurso; //Mientras este booleano est� en true, la partida seguir� su curso.
 
   public:
@@ -58,7 +59,10 @@ class Jugador
     virtual void conocerLugar (Lugar* nuevoLugar);
 
     //Conoce a la barca por aparte
-    virtual void conocerBarca (Barca* barca);
+    virtual void conocerBarca (Barca* nuevaBarca);
+
+    //Conocer al robot
+    virtual void conocerRobot(Individuo* nuevoRobot);
 
     //Le agrega un individuo al predador a su vector de presas //POSIBLEMENTE NO NECESARIA
     virtual void agregarPresa(Individuo* predador, Individuo* presa);
@@ -67,10 +71,10 @@ class Jugador
     virtual void leerTeclado();
     
     /*Mueve a un individuo del lugar donde est�, al lugar vecino. Retorna true si logra hacerlo, false en caso contrario.*/ 
-	  virtual bool moverIndividuo(Individuo*);
+	  virtual bool moverIndividuo(Individuo* individuo);
 
 	  /* revisa si ya se gan� o perdi� la partida.*/
-	  virtual void revisarPartida();
+	  virtual void revisarPartida(Individuo* robot);
 
     //Mostrar tecla oprimida
     virtual string mostrarTecla();
@@ -79,10 +83,10 @@ class Jugador
     virtual bool mostrarSiPartidaEnCurso();
 
     /*Compara la letra recibida de leerTeclado con las letras correspondientes a cada individuo y a la barca y al encontrar una coincidencia, hace que se se mueva a su lugar vecino. */
-    virtual void jugar (string tecla);
+    virtual bool jugar (string tecla);
 
     //Muestra el estado del juego en pantalla.
-    void estado();
+    virtual void estado();
 };
 #else
 class Jugador;

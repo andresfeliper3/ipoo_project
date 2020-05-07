@@ -8,6 +8,7 @@
 */
 
 #include "Lugar.h"
+#include <iostream>
 
 //Constructor
 Lugar::Lugar(string nombre, Lugar *lugarVecino, string letraAsociada) : nombre(nombre), lugarVecino(lugarVecino), letraAsociada(letraAsociada)
@@ -35,11 +36,11 @@ void Lugar::agregarIndividuo(Individuo *individuo)
     }
 }
 
-//DUDA, SI USAR ERASE
+
 //Quita un individuo del vector de individuo, si está presente
 void Lugar::quitarIndividuo(Individuo *individuo)
 {
-    if(individuoPresente(individuo) != -1)
+    if(individuoPresente(individuo) >= 0) //Si el individuo está presente
     {
         individuosPresentes.erase(individuosPresentes.begin()+individuoPresente(individuo)); 
     }
@@ -54,11 +55,10 @@ int Lugar::cantidadDeIndividuos()
 //Retorna la posición si el individuo ingresado está presente en el vector de individuos de la parte privada, retorna -1 en caso en contrario
 int Lugar::individuoPresente(Individuo *individuo)
 {
-    for(int cualIndividuo=0; cualIndividuo < individuosPresentes.size(); cualIndividuo++)
+    for(int cualIndividuo=0; cualIndividuo < this->cantidadDeIndividuos(); cualIndividuo++)
     {
         if(individuosPresentes[cualIndividuo] == individuo) 
         {
-            
             return cualIndividuo;
         }
     }
@@ -68,42 +68,63 @@ int Lugar::individuoPresente(Individuo *individuo)
 //Hace que un individuo se mueva de este lugar al lugar vecino. Retorna true si logra hacerlo, false en caso contrario
 bool Lugar::moverIndividuo(Individuo *individuo)
 {
-    //AGREGAR DESPUÉS QUE SÓLO SI EL ROBOT ESTÁ PRESENTE, SE PUEDE MOVER UN INDIVIDUO
-    if(individuoPresente(individuo) != -1) //Si el individuo está presente
+    if(robotPresente()) //Si el robot está presente
     {
-        this->quitarIndividuo(individuo);
-        lugarVecino->agregarIndividuo(individuo);
-        return true;
+        for(int cualIndividuo = 0; cualIndividuo < cantidadDeIndividuos(); cualIndividuo++)
+	    {   
+            if(individuoPresente(individuo) >= 0) //Si el individuo está presente
+            {
+                this->quitarIndividuo(individuo);
+                lugarVecino->agregarIndividuo(individuo);
+                return true;
+            }   
+         } 
     }
     return false; 
 }
 
-//Retorna true si el lugar un lugar vecino, false en caso contrario
+//Retorna true si el lugar tiene un lugar vecino, false en caso contrario
 bool Lugar::tieneVecino()
 {
-    if(lugarVecino)
+    if(lugarVecino) 
         return true;
     return false;
 }
 
+
+//Retorna true si hay un robot presente en el lugar, false en caso contrario
+bool Lugar::robotPresente()
+{
+    for(int cualIndividuo = 0; cantidadDeIndividuos(); cualIndividuo++)
+    {
+        if(individuosPresentes[cualIndividuo]->esUnRobot())
+        {
+             return true;
+        }     
+    }      
+    return false;
+}
+
 //Revisa si el jugador pierde cuando la barca se aleja de una orilla. Retorna true si pierde, y false si sigue jugando.
-bool Lugar::revisarSiPierde()
+bool Lugar::revisarSiPierde(Individuo* robot)
 {
  /*Realizar un ciclo que busque por todos los individuos del vector.
  Cada individuo debe ver si se puede comer a los demás.
  */
-    //AUMENTAR LA CONDICIÓN, PARA QUE SEA CUANDO EL ROBOT NO ESTÉ PRESENTE
-    for(int cualPredador = 0; cualPredador < individuosPresentes.size(); cualPredador++)
+    if(not robotPresente()) //Si el robot no está presente 
     {
-        for(int cualPresa = 0; cualPresa < individuosPresentes.size(); cualPresa++)
+        cerr << "Lugar: robot no está presente" <<endl;
+        for(int cualPredador = 0; cualPredador < cantidadDeIndividuos(); cualPredador++)
         {
-            if(individuosPresentes[cualPredador]->puedeComer(individuosPresentes[cualPresa]))
+            for(int cualPresa = 0; cualPresa < cantidadDeIndividuos(); cualPresa++)
             {
-                //break; ?
-                return true; 
+                if(individuosPresentes[cualPredador]->puedeComer(individuosPresentes[cualPresa]))
+                {
+                    return true;      
+                }
             }
         }
-    }
+    }       
     return false;
 }
 

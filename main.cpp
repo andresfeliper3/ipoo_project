@@ -31,6 +31,7 @@ int main()
   Orilla orillaIzquierda("IZQUIERDA",nullptr); //CREA ORILLA IZQ, VECINO NULO
   Barca barca("BARCA", &orillaIzquierda,"B"); //CREAR BARCA,VECINO INICIAL, LETRA ASOCIADA
   orillaIzquierda.cambiarDeVecino(&barca);
+
   Orilla orillaDerecha("DERECHA", nullptr); //CREAR ORILLA DER, VECINO NULO
 
   /***********************************************************************
@@ -59,17 +60,22 @@ int main()
   Individuo* zorro = player.crearIndividuo("Zorro", "Z");
   Individuo* conejo = player.crearIndividuo("Conejo", "C");
   Individuo* lechuga = player.crearIndividuo("Lechuga", "L");
+  //Jugador conoce al robot
+  player.conocerRobot(robot);
 
   //Se le asignan las posibles presas a los individuos
   player.agregarPresa(zorro, conejo);
   player.agregarPresa(conejo, lechuga);
 
+  
 
 while(player.mostrarSiPartidaEnCurso()) //Mientras la partida esté en curso
 {
+  cerr << ".2 orilla izquierda tiene vecino " << orillaIzquierda.tieneVecino() << endl;
   player.estado();
   player.leerTeclado();
   player.jugar(player.mostrarTecla());
+  player.revisarPartida(robot);
 }
 
 

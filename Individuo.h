@@ -26,10 +26,11 @@ class Individuo
         string nombre;
         string letraAsociada; //Letra asociada al movimiento
         vector <Individuo *> individuosQuePuedeComer; //Bichos que puede comer
+        bool esRobot;
 
     public:
         //Constructor
-        Individuo(string nombre, string letraParaMover);
+        Individuo(string nombre, string letraParaMover, bool esRobot);
 
         //Destructor
         virtual ~Individuo();
@@ -42,6 +43,9 @@ class Individuo
 
         //Retorna la letra asociada al individuo
         virtual string mostrarLetraAsociada();
+
+        //Muestra si es o no es un robot
+        virtual bool esUnRobot();
 
         //Revisa si puede comerse a otro individuo, es decir, si está en el vector de individuos que puede comer
         virtual bool puedeComer(Individuo *posiblePresa);

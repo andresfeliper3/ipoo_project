@@ -43,7 +43,7 @@ class Barca : public Lugar
     virtual void conocerOrillas(Lugar *orilla);
 
     //Mueve la barca de una orilla a la otra
-    virtual void movimientoDeBarca();
+    virtual bool movimientoDeBarca();
    
 
 

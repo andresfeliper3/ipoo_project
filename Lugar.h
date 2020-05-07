@@ -31,7 +31,7 @@ class Lugar
     public:
 
     //Constructor
-    Lugar(string nombre, Lugar *lugarVecino, string letraAsociada = ""); //Al crear un lugar, se especifica cuál es el vecino inicial
+    Lugar(string nombre, Lugar *lugarVecino, string letraAsociada = " "); //Al crear un lugar, se especifica cuál es el vecino inicial
 
     //Destructor
     virtual ~Lugar();
@@ -61,8 +61,11 @@ class Lugar
     //Retorna true si tiene un lugar vecino, false en caso contrario
     virtual bool tieneVecino();
 
+    //Retorna true si el robot está presente en el lugar, false en caso contrario
+    virtual bool robotPresente();
+
     //Revisa si se pierde la partida. Retorna true si pierde, y false si sigue jugando.
-    virtual bool revisarSiPierde();
+    virtual bool revisarSiPierde(Individuo *robot);
 
     
 };
