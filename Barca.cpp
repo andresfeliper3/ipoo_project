@@ -22,21 +22,18 @@ Barca::~Barca()
 }
 
 //Mueve la barca de una orilla a otra
-bool Barca::movimientoDeBarca() 
+void Barca::movimientoDeBarca() 
 {
-	cerr << "4 entra en movimientoDeBarca" << endl; 
-	
-		cerr << "4.1 entra en el ciclo" <<endl;
-		
-		this->cambiarDeVecino();
-		cerr << " 4.3 barca cambia de vecino " << this->tieneVecino() <<endl;
-        orillas[0]->cambiarDeVecino(this); //La orilla izquierda cambia de vecino.
-		cerr << " 4.4 izq cambia de vecino " << orillas[0]->tieneVecino() <<endl;
-        orillas[1]->cambiarDeVecino(this); //La orilla derecha cambia de vecino.	
-		cerr << " 4.5 der cambia de vecino " << orillas[1]->tieneVecino() <<endl;
-		cerr << "5 cambia de vecinos en barca y orillas " <<endl; 
-		return true;	
+	cerr << "4 entra en movimientoDeBarca" << endl; 	
+	this->cambiarDeVecino(); //Cambia el vecino de la barca
+	cerr << " 4.3 barca cambia de vecino " << this->tieneVecino() <<endl;
+    orillas[0]->cambiarDeVecino(this); //La orilla izquierda cambia de vecino.
+	cerr << " 4.4 izq cambia de vecino " << orillas[0]->tieneVecino() <<endl;
+   	orillas[1]->cambiarDeVecino(this); //La orilla derecha cambia de vecino.	
+	cerr << " 4.5 der cambia de vecino " << orillas[1]->tieneVecino() <<endl;
+	cerr << "5 cambia de vecinos en barca y orillas " <<endl; 	
 }
+
 //Cambia el vecino de la barca entre las dos posibilidades que tiene: las dos orillas
 void Barca::cambiarDeVecino(Lugar *nuevoLugarVecino  /*= nullptr*/) //PREGUNTAR
 {

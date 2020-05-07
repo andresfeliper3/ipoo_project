@@ -25,7 +25,7 @@ void Orilla::cambiarDeVecino(Lugar *nuevoLugarVecino)
 {
 	if(lugarVecino)
 	{
-		this->lugarVecino = nullptr; //deja de conocer la Barca
+		this->lugarVecino = nullptr; //Deja de conocer la Barca
 	}
   	else
 	{
