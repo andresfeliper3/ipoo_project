@@ -12,7 +12,7 @@
 #include <string>
 
 //Constructor
-Jugador::Jugador(bool partidaEnCurso) : partidaEnCurso(partidaEnCurso)
+Jugador::Jugador(bool partidaEnCurso, Barca *barca) : partidaEnCurso(partidaEnCurso), barca(barca)
 {
 	tecla = "";
 }
@@ -29,11 +29,11 @@ Jugador::~Jugador()
 }
 
 //Crea un individuo, y lo añade al vector de individuos y a la orilla izquierda
-Individuo* Jugador::crearIndividuo(string nombre, string letraParaMover)
+Individuo* Jugador::crearIndividuo(string nombre, string letraParaMover, bool esRobot)
 {
-	Individuo* nuevoIndividuo = new Individuo(nombre, letraParaMover);
+	Individuo* nuevoIndividuo = new Individuo(nombre, letraParaMover, esRobot);
 	individuos.push_back(nuevoIndividuo); 
-  	lugares[0]->agregarIndividuo(nuevoIndividuo);
+  	lugares[0]->agregarIndividuo(nuevoIndividuo); //Coloca el individuo en la orilla izquierda
 	return nuevoIndividuo;
 }
 
@@ -46,26 +46,8 @@ void Jugador::conocerLugar(Lugar* nuevoLugar)
 	}
 }
 
-//Añade la barca a la parte privada
-void Jugador::conocerBarca(Barca* nuevaBarca)
-{
-	if(nuevaBarca)
-	{
-		this->barca = nuevaBarca;
-	}
-}
-
-//Añade al robot a la parte privada
-void Jugador::conocerRobot(Individuo* nuevoRobot)
-{
-	if(nuevoRobot)
-	{
-		this->robot = nuevoRobot;
-	}
-}
-
 //Agrega una presa a un predador correspondiente
-void Jugador::agregarPresa (Individuo* predador, Individuo* presa)
+void Jugador::agregarPresa(Individuo* predador, Individuo* presa)
 {
   predador->agregarPresa(presa);
 }
@@ -73,7 +55,7 @@ void Jugador::agregarPresa (Individuo* predador, Individuo* presa)
 //Recibe la tecla oprimida por el usuario y la guarda en la parte privada
 void Jugador::leerTeclado()
 {
-	getline(cin,this->tecla);
+	getline(cin, this->tecla);
 	cerr << "1, leer teclado " <<  tecla << " " << barca->mostrarLetraAsociada() <<endl;
 }
 
@@ -98,10 +80,10 @@ bool Jugador::moverIndividuo(Individuo* individuo)
 //Jugador debe encargarse de que Barca conozca a las dos orillas.
 
 
-void Jugador::revisarPartida(Individuo* robot)
+void Jugador::revisarPartida()
 {
 	//lugares[1]->cambiarDeVecino(); //Cambia el lugar vecino de la barca	
-	if (lugares[0]->revisarSiPierde(robot) or lugares[2]->revisarSiPierde(robot))
+	if (lugares[0]->revisarSiPierde() or lugares[2]->revisarSiPierde())
 	{
     //Perdiste
 		partidaEnCurso = false;
@@ -129,41 +111,43 @@ bool Jugador::mostrarSiPartidaEnCurso()
 	return partidaEnCurso;
 }
 
-/*Compara la letra recibida de leerTeclado con las letras correspondientes a cada individuo y a la barca y al encontrar una coincidencia, hace que se se mueva a su lugar vecino. */
-bool Jugador::jugar(string tecla)
+/*Compara la letra recibida de leerTeclado con las letras correspondientes a cada individuo y a la barca, y al encontrar una coincidencia, hace que se se mueva a su lugar vecino. */
+void Jugador::jugar()
 {
 	if (partidaEnCurso) //Mientras la partida esté en curso
-	
 	{
-		cerr << "2 entra en Jugar " << tecla << " " << barca->mostrarLetraAsociada() <<  endl; 
+		cerr << "2 entra en Jugar " << tecla << " " << this->barca->mostrarLetraAsociada() <<  endl; 
+
+		//Movimiento de la barca
 		if ("B" == tecla ) //Si el usuario ha marcado la tecla de la barca, la barca se mueve
 		{
 			cerr << "2.1 " << barca->mostrarLetraAsociada() << endl; 
-			if(barca->individuoPresente(this->robot) >= 0 )
+			if(barca->robotPresente()) //Si el robot está en la barca
 			{
 				cerr << "El robot está presente en la barca" << endl;
-				if(barca->movimientoDeBarca()) //Si la barca se pudo mover
-				{
-					cerr << "3 Jugar activa el movimiento de la barca " << barca->mostrarNombre() << endl;
-					return true;
-				}	
-			}
-				
+				cerr << "3 Jugar activa el movimiento de la barca " << barca->mostrarNombre() << endl;
+				barca->movimientoDeBarca(); //Movimiento de la barca
+					
+			}			
 		}
-		for (int cualIndividuo = 0; cualIndividuo < individuos.size(); cualIndividuo++ )
+		//Movimiento de los individuos
+		else
 		{
-			if (individuos[cualIndividuo]->mostrarLetraAsociada() == tecla)
+			for (int cualIndividuo = 0; cualIndividuo < individuos.size(); cualIndividuo++ )
 			{
-				cerr << "3 hay un individuo con la letra asociada " << individuos[cualIndividuo]->mostrarNombre() <<endl;
-				if(this->moverIndividuo(individuos[cualIndividuo]))
+				if (individuos[cualIndividuo]->mostrarLetraAsociada() == tecla)
 				{
-					cerr << "4 se ejecutó la función de moverIndividuo de Jugador para " << individuos[cualIndividuo] <<endl;
-					//break;?
-					return true;
-				}		
-			}
+					cerr << "3 hay un individuo con la letra asociada " << individuos[cualIndividuo]->mostrarLetraAsociada() <<endl;
+					if(this->moverIndividuo(individuos[cualIndividuo]))
+					{
+						cerr << "4 se ejecutó la función de moverIndividuo de Jugador para " << individuos[cualIndividuo]->mostrarNombre() <<endl;
+						break;
+					}		
+				}
+			}	
+			cout << "Presiona una tecla válida" <<endl; //Cambiar por throw
 		}	
-		throw "Presiona una tecla válida";		
+				
 	}
 }
 

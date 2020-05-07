@@ -4,7 +4,7 @@
   		   José David Barona Hernández "jose.david.barona@correounivalle.edu.co"
   		   Diego Ledesema "diego.ledesma@correounivalle.edu.co"
   Fecha creaciÃ³n: 2020-03-30
-  Fecha Ãºltima modificaciÃ³n: 2020-04-20
+  Fecha Ãºltima modificaciÃ³n: 2020-05-07
 */
 
 #ifndef JUGADOR__HH
@@ -42,27 +42,20 @@ class Jugador
     vector <Individuo*> individuos; //Vector de punteros a individuo.
 	  string tecla;
     Barca *barca;
-    Individuo *robot;
 	  bool partidaEnCurso; //Mientras este booleano est� en true, la partida seguir� su curso.
 
   public:
     //Constructor.
-    Jugador(bool partidaEnCurso);
+    Jugador(bool partidaEnCurso, Barca* barca);
 
     //Destructor.
     virtual ~Jugador();
 
     //Crea un objeto de la clase Individuo y le asocia una letraParaMover.
-    virtual Individuo* crearIndividuo(string nombre, string letraParaMover);
+    virtual Individuo* crearIndividuo(string nombre, string letraParaMover, bool esRobot);
     
     //Pone un lugar en el vector de punteros a lugar.
     virtual void conocerLugar (Lugar* nuevoLugar);
-
-    //Conoce a la barca por aparte
-    virtual void conocerBarca (Barca* nuevaBarca);
-
-    //Conocer al robot
-    virtual void conocerRobot(Individuo* nuevoRobot);
 
     //Le agrega un individuo al predador a su vector de presas //POSIBLEMENTE NO NECESARIA
     virtual void agregarPresa(Individuo* predador, Individuo* presa);
@@ -74,7 +67,7 @@ class Jugador
 	  virtual bool moverIndividuo(Individuo* individuo);
 
 	  /* revisa si ya se gan� o perdi� la partida.*/
-	  virtual void revisarPartida(Individuo* robot);
+	  virtual void revisarPartida();
 
     //Mostrar tecla oprimida
     virtual string mostrarTecla();
@@ -83,7 +76,7 @@ class Jugador
     virtual bool mostrarSiPartidaEnCurso();
 
     /*Compara la letra recibida de leerTeclado con las letras correspondientes a cada individuo y a la barca y al encontrar una coincidencia, hace que se se mueva a su lugar vecino. */
-    virtual bool jugar (string tecla);
+    virtual void jugar();
 
     //Muestra el estado del juego en pantalla.
     virtual void estado();

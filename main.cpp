@@ -28,7 +28,7 @@ int main()
   /*
     CREAR LA BARCA Y LAS ORILLAS
   */
-  Orilla orillaIzquierda("IZQUIERDA",nullptr); //CREA ORILLA IZQ, VECINO NULO
+  Orilla orillaIzquierda("IZQUIERDA", nullptr); //CREA ORILLA IZQ, VECINO NULO
   Barca barca("BARCA", &orillaIzquierda,"B"); //CREAR BARCA,VECINO INICIAL, LETRA ASOCIADA
   orillaIzquierda.cambiarDeVecino(&barca);
 
@@ -39,46 +39,40 @@ int main()
   con los respectivos lugares creados anteriormente (Orilla izquierda, Barca, Orilla Derecha)
   El usuario va añadiendo los individuos que desee.
 
-  PD: Por lo pronto hay mucho desorden, pero es fácil de reubicar para que quede bonito xd
+   Por lo pronto hay mucho desorden, pero es fácil de reubicar para que quede bonito xd
   ***********************************************************************/
  //Creación de Jugador
 
-  Jugador player(true);
+  Jugador player(true, &barca);
 
   //Jugador conoce a los lugares
   player.conocerLugar(&orillaIzquierda);
   player.conocerLugar(&barca);
   player.conocerLugar(&orillaDerecha);
-  //Jugador conoce a la barca por aparte
-  player.conocerBarca(&barca);
+  
   //La barca conoce a las orillas
   barca.conocerOrillas(&orillaIzquierda);
   barca.conocerOrillas(&orillaDerecha);
 
-  //Jugador crea a los individuos
-  Individuo* robot = player.crearIndividuo("Robot", "R");
-  Individuo* zorro = player.crearIndividuo("Zorro", "Z");
-  Individuo* conejo = player.crearIndividuo("Conejo", "C");
-  Individuo* lechuga = player.crearIndividuo("Lechuga", "L");
-  //Jugador conoce al robot
-  player.conocerRobot(robot);
+  //Jugador crea a los individuos y los coloca en la orilla izquierda
+  Individuo* robot = player.crearIndividuo("Robot", "R", true);
+  Individuo* zorro = player.crearIndividuo("Zorro", "Z", false);
+  Individuo* conejo = player.crearIndividuo("Conejo", "C", false);
+  Individuo* lechuga = player.crearIndividuo("Lechuga", "L", false);
 
   //Se le asignan las posibles presas a los individuos
   player.agregarPresa(zorro, conejo);
   player.agregarPresa(conejo, lechuga);
 
+  while(player.mostrarSiPartidaEnCurso()) //Mientras la partida esté en curso
+  {
+    cerr << ".2 orilla izquierda tiene vecino " << orillaIzquierda.tieneVecino() << endl;
+    player.estado();
+    player.leerTeclado();
+    player.jugar();
+    player.revisarPartida();
+  }
   
-
-while(player.mostrarSiPartidaEnCurso()) //Mientras la partida esté en curso
-{
-  cerr << ".2 orilla izquierda tiene vecino " << orillaIzquierda.tieneVecino() << endl;
-  player.estado();
-  player.leerTeclado();
-  player.jugar(player.mostrarTecla());
-  player.revisarPartida(robot);
-}
-
-
   return 0;
   
 }

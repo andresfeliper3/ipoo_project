@@ -31,7 +31,7 @@ class Lugar
     public:
 
     //Constructor
-    Lugar(string nombre, Lugar *lugarVecino, string letraAsociada = " "); //Al crear un lugar, se especifica cuál es el vecino inicial
+    Lugar(string nombre, Lugar *lugarVecino, string letraAsociada = ""); //Al crear un lugar, se especifica cuál es el vecino inicial
 
     //Destructor
     virtual ~Lugar();
@@ -42,7 +42,7 @@ class Lugar
     //Retorna la cantidad de individuos presentes
     virtual int cantidadDeIndividuos();
 
-    //Función virtual
+    //Función virtual pura
     //Cambia el vecino debido al movimiento de la barca (esta función es diferente para las clases hijas de Lugar)
     virtual void cambiarDeVecino(Lugar *nuevoLugarVecino = nullptr) = 0;
 
@@ -65,7 +65,7 @@ class Lugar
     virtual bool robotPresente();
 
     //Revisa si se pierde la partida. Retorna true si pierde, y false si sigue jugando.
-    virtual bool revisarSiPierde(Individuo *robot);
+    virtual bool revisarSiPierde();
 
     
 };

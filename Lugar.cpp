@@ -106,7 +106,7 @@ bool Lugar::robotPresente()
 }
 
 //Revisa si el jugador pierde cuando la barca se aleja de una orilla. Retorna true si pierde, y false si sigue jugando.
-bool Lugar::revisarSiPierde(Individuo* robot)
+bool Lugar::revisarSiPierde()
 {
  /*Realizar un ciclo que busque por todos los individuos del vector.
  Cada individuo debe ver si se puede comer a los demás.
