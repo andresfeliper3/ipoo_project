@@ -82,21 +82,24 @@ bool Jugador::moverIndividuo(Individuo* individuo)
 
 void Jugador::revisarPartida()
 {
+	cerr << "Entró a revisarPartida de Jugador" <<endl; 
 	//lugares[1]->cambiarDeVecino(); //Cambia el lugar vecino de la barca	
 	if (lugares[0]->revisarSiPierde() or lugares[2]->revisarSiPierde())
 	{
     //Perdiste
 		partidaEnCurso = false;
-		cout << "Perdiste" <<endl; 
+		cerr << "Perdiste" <<endl; 
    // perdiste();
 	} 
 	else if (lugares[2]->cantidadDeIndividuos() == individuos.size())
 	{
     //Ganaste
 		partidaEnCurso = false;
-		cout << "Ganaste" <<endl;
+		cerr << "Ganaste" <<endl;
     //ganaste();
 	}
+	partidaEnCurso = true;
+	cerr << "Pronto a salir de revisarPartida de Jugador con partida en curso " << partidaEnCurso << endl;  
 }
 
 //Mostrar la tecla oprimida por el usuario
@@ -145,7 +148,7 @@ void Jugador::jugar()
 					}		
 				}
 			}	
-			cout << "Presiona una tecla válida" <<endl; //Cambiar por throw
+		//	cout << "Presiona una tecla válida" <<endl; //Cambiar por throw
 		}	
 				
 	}

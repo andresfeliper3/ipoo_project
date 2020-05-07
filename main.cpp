@@ -54,7 +54,7 @@ int main()
   barca.conocerOrillas(&orillaIzquierda);
   barca.conocerOrillas(&orillaDerecha);
 
-  //Jugador crea a los individuos y los coloca en la orilla izquierda
+  //Jugador crea a los individuos y los coloca en el vector de individuos de jugador y en la orilla izquierda
   Individuo* robot = player.crearIndividuo("Robot", "R", true);
   Individuo* zorro = player.crearIndividuo("Zorro", "Z", false);
   Individuo* conejo = player.crearIndividuo("Conejo", "C", false);
@@ -64,14 +64,20 @@ int main()
   player.agregarPresa(zorro, conejo);
   player.agregarPresa(conejo, lechuga);
 
-  while(player.mostrarSiPartidaEnCurso()) //Mientras la partida esté en curso
+  
+
+   //Mientras la partida esté en curso
+  do 
   {
     cerr << ".2 orilla izquierda tiene vecino " << orillaIzquierda.tieneVecino() << endl;
-    player.estado();
-    player.leerTeclado();
-    player.jugar();
-    player.revisarPartida();
-  }
+    player.estado(); //Imprime el estado del juego
+    player.revisarPartida();  //Revisa si se perdió o ganó la partida después del movimiento
+    cerr << "Ejecutó revisarPartida" << endl;
+    player.leerTeclado(); //Lee la tecla ingresada por el usuario
+    player.jugar();  //Juega según la tecla ingresada por el usuario
+    cerr << "Ejecutó Jugar" <<endl;
+      
+  } while(player.mostrarSiPartidaEnCurso());
   
   return 0;
   

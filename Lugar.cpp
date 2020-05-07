@@ -69,13 +69,17 @@ int Lugar::individuoPresente(Individuo *individuo)
 bool Lugar::moverIndividuo(Individuo *individuo)
 {
     if(robotPresente()) //Si el robot está presente
+    cerr << "4.1 Robot presente" <<endl;
     {
         for(int cualIndividuo = 0; cualIndividuo < cantidadDeIndividuos(); cualIndividuo++)
 	    {   
             if(individuoPresente(individuo) >= 0) //Si el individuo está presente
             {
-                this->quitarIndividuo(individuo);
-                lugarVecino->agregarIndividuo(individuo);
+                cerr << "4.2 El individuo está presente" <<endl;
+                lugarVecino->agregarIndividuo(individuo); 
+                cerr << "4.3 El individuo ha sido agregado al lugar vecino" << endl;
+                this->quitarIndividuo(individuo);     
+                cerr << "4.4 El individuo fue quitado del vector" <<endl;
                 return true;
             }   
          } 
@@ -95,7 +99,8 @@ bool Lugar::tieneVecino()
 //Retorna true si hay un robot presente en el lugar, false en caso contrario
 bool Lugar::robotPresente()
 {
-    for(int cualIndividuo = 0; cantidadDeIndividuos(); cualIndividuo++)
+    cerr << "Entró a robotPresente" <<endl;
+    for(int cualIndividuo = 0; cualIndividuo < cantidadDeIndividuos(); cualIndividuo++)
     {
         if(individuosPresentes[cualIndividuo]->esUnRobot())
         {
@@ -108,6 +113,7 @@ bool Lugar::robotPresente()
 //Revisa si el jugador pierde cuando la barca se aleja de una orilla. Retorna true si pierde, y false si sigue jugando.
 bool Lugar::revisarSiPierde()
 {
+    cerr << "Entró al revisarSiPierde de " << this->mostrarNombre() << endl;
  /*Realizar un ciclo que busque por todos los individuos del vector.
  Cada individuo debe ver si se puede comer a los demás.
  */
