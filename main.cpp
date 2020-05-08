@@ -67,13 +67,12 @@ int main()
    //Mientras la partida esté en curso
   do 
   {
-    cerr << ".2 orilla izquierda tiene vecino " << orillaIzquierda.tieneVecino() << endl;
     player.estado(); //Imprime el estado del juego
-    player.revisarPartida();  //Revisa si se perdió o ganó la partida después del movimiento
-    cerr << "Ejecutó revisarPartida" << endl;
     player.leerTeclado(); //Lee la tecla ingresada por el usuario
     player.jugar();  //Juega según la tecla ingresada por el usuario
     cerr << "Ejecutó Jugar" <<endl;
+    player.revisarPartida();  //Revisa si se perdió o ganó la partida después del movimiento
+    cerr << "Ejecutó revisarPartida" << endl;
       
   } while(player.mostrarSiPartidaEnCurso());
   

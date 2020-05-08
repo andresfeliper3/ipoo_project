@@ -64,15 +64,13 @@ bool Jugador::moverIndividuo(Individuo* individuo)
 {
 	for (int cualLugar = 0; cualLugar < lugares.size(); cualLugar++)
 	{
-		if (lugares[cualLugar]->individuoPresente(individuo) >= 0 ) //Revisa si el individuo está presente en el lugar
+		if(lugares[cualLugar]->moverIndividuo(individuo))  //NOTA: ESTA FUNCIÓN YA REVISA QUE EL INDIVIDUO ESTÉ PRESENTE
 		{
-			if(lugares[cualLugar]->moverIndividuo(individuo))  //NOTA: ESTA FUNCIÓN YA REVISA QUE EL INDIVIDUO ESTÉ PRESENTE
-			{
-				cerr << "3.1 se ejecutó la función de moverIndividuo de Lugar "  <<endl;
-				cerr << individuo->mostrarNombre() << " se movió desde " << lugares[cualLugar]->mostrarNombre() << " hasta su lugar vecino" <<endl;
-				return true;
-			}
-		}	
+			cerr << "3.1 se ejecutó la función de moverIndividuo de Lugar "  <<endl;
+			cerr << individuo->mostrarNombre() << " se movió desde " << lugares[cualLugar]->mostrarNombre() << " hasta su lugar vecino" <<endl;
+			return true;
+		}
+			
 	}
 	return false;
 }
@@ -84,7 +82,7 @@ void Jugador::revisarPartida()
 {
 	cerr << "Entró a revisarPartida de Jugador" <<endl; 
 	//lugares[1]->cambiarDeVecino(); //Cambia el lugar vecino de la barca	
-	if (lugares[0]->revisarSiPierde() or lugares[2]->revisarSiPierde())
+	if (lugares[0]->revisarSiPierde() or lugares[2]->revisarSiPierde() or lugares[1]->revisarSiPierde())
 	{
     //Perdiste
 		partidaEnCurso = false;

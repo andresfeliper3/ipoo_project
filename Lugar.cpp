@@ -68,20 +68,15 @@ int Lugar::individuoPresente(Individuo *individuo)
 //Hace que un individuo se mueva de este lugar al lugar vecino. Retorna true si logra hacerlo, false en caso contrario
 bool Lugar::moverIndividuo(Individuo *individuo)
 {
-    if(robotPresente()) //Si el robot está presente
-    cerr << "4.1 Robot presente" <<endl;
+    if(individuoPresente(individuo) >=0) //Si el individuo está presente. Si el robot está presente fue quitado para la jugabilidad
     {
-         if(individuoPresente(individuo) >= 0) //Si el individuo está presente
-        {
-            cerr << "4.2 El individuo está presente en " << this-> mostrarNombre() << " y va para " << lugarVecino->mostrarNombre() <<endl;
-            lugarVecino->agregarIndividuo(individuo); 
-            cerr << "4.3 El individuo ha sido agregado al lugar vecino, que es " << lugarVecino->mostrarNombre() << endl;
-            this->quitarIndividuo(individuo);     
-            cerr << "4.4 El individuo fue quitado del vector" <<endl;
-            return true;
-        }   
-         
-    }
+        cerr << "4.2 El individuo está presente en " << this-> mostrarNombre() << " y va para " << lugarVecino->mostrarNombre() <<endl;
+        lugarVecino->agregarIndividuo(individuo); 
+        cerr << "4.3 El individuo ha sido agregado al lugar vecino, que es " << lugarVecino->mostrarNombre() << endl;
+        this->quitarIndividuo(individuo);     
+        cerr << "4.4 El individuo fue quitado del vector" <<endl;
+        return true;
+    }   
     return false; 
 }
 
