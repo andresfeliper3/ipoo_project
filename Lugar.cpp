@@ -71,18 +71,16 @@ bool Lugar::moverIndividuo(Individuo *individuo)
     if(robotPresente()) //Si el robot está presente
     cerr << "4.1 Robot presente" <<endl;
     {
-        for(int cualIndividuo = 0; cualIndividuo < cantidadDeIndividuos(); cualIndividuo++)
-	    {   
-            if(individuoPresente(individuo) >= 0) //Si el individuo está presente
-            {
-                cerr << "4.2 El individuo está presente" <<endl;
-                lugarVecino->agregarIndividuo(individuo); 
-                cerr << "4.3 El individuo ha sido agregado al lugar vecino" << endl;
-                this->quitarIndividuo(individuo);     
-                cerr << "4.4 El individuo fue quitado del vector" <<endl;
-                return true;
-            }   
-         } 
+         if(individuoPresente(individuo) >= 0) //Si el individuo está presente
+        {
+            cerr << "4.2 El individuo está presente en " << this-> mostrarNombre() << " y va para " << lugarVecino->mostrarNombre() <<endl;
+            lugarVecino->agregarIndividuo(individuo); 
+            cerr << "4.3 El individuo ha sido agregado al lugar vecino, que es " << lugarVecino->mostrarNombre() << endl;
+            this->quitarIndividuo(individuo);     
+            cerr << "4.4 El individuo fue quitado del vector" <<endl;
+            return true;
+        }   
+         
     }
     return false; 
 }
@@ -134,6 +132,16 @@ bool Lugar::revisarSiPierde()
     return false;
 }
 
+//Retorna el nombre del lugar vecino
+string Lugar::prueba()
+{
+    return lugarVecino->mostrarNombre();
+}
+
+Lugar *Lugar::prueba2()
+{
+    return lugarVecino;
+}
 
 
 

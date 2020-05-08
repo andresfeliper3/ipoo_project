@@ -13,7 +13,6 @@
 Barca::Barca(string nombreLugar, Lugar *lugarVecino, string letraAsociada): Lugar(nombreLugar, lugarVecino, letraAsociada)
 {
 	
- // lugarVecino->cambiarDeVecino(this);//  Le avisa a la orilla que tiene como vecina, que son vecinas.
 }
 
 Barca::~Barca()
@@ -24,26 +23,31 @@ Barca::~Barca()
 //Mueve la barca de una orilla a otra
 void Barca::movimientoDeBarca() 
 {
-	cerr << "4 entra en movimientoDeBarca" << endl; 	
+	cerr << "4 entra en movimientoDeBarca" << endl; 
+	cerr << "Barca tiene como vecino a " << this->prueba() << "con puntero " << lugarVecino <<endl;	
 	this->cambiarDeVecino(); //Cambia el vecino de la barca
-	cerr << " 4.3 barca cambia de vecino " << this->tieneVecino() <<endl;
+	cerr << " 4.3 barca cambia de vecino a " << this->prueba() <<endl;
     orillas[0]->cambiarDeVecino(this); //La orilla izquierda cambia de vecino.
-	cerr << " 4.4 izq cambia de vecino " << orillas[0]->tieneVecino() <<endl;
+	cerr << " 4.4 izq " << orillas[0]->mostrarNombre() << " con puntero " << orillas[0] << " cambia de vecino " << orillas[0]->tieneVecino() <<endl;
    	orillas[1]->cambiarDeVecino(this); //La orilla derecha cambia de vecino.	
-	cerr << " 4.5 der cambia de vecino " << orillas[1]->tieneVecino() <<endl;
+	cerr << " 4.5 der " << orillas[1]->mostrarNombre() << " cambia de vecino " << orillas[1]->tieneVecino() <<endl;
 	cerr << "5 cambia de vecinos en barca y orillas " <<endl; 	
 }
 
 //Cambia el vecino de la barca entre las dos posibilidades que tiene: las dos orillas
-void Barca::cambiarDeVecino(Lugar *nuevoLugarVecino  /*= nullptr*/) //PREGUNTAR
+void Barca::cambiarDeVecino(Lugar *nuevoLugarVecino) //PREGUNTAR
 {
+	cerr << "6. Entró a cambiar de vecino en Barca" <<endl;
+	cerr << "Lugar vecino es " << lugarVecino << " y orillas 0 es " << orillas[0] <<endl;
 	if(this->lugarVecino == this->orillas[0]) //Si su vecino es la orilla izquierda, pasa a ser la orilla derecha
 	{
 		this->lugarVecino = orillas[1];
+		cerr << "Cambiar de Vecino: de izquierda a derecha" <<endl; 
 	}
 	else if(this->lugarVecino == this->orillas[1]) //Si su vecino es la orilla derecha, pasa a ser la orilla izquierda
 	{
 		this->lugarVecino = orillas[0];
+		cerr << "Cambiar de Vecino: de derecha a izquierda" <<endl;
 	}
 }
 

@@ -67,6 +67,11 @@ class Lugar
     //Revisa si se pierde la partida. Retorna true si pierde, y false si sigue jugando.
     virtual bool revisarSiPierde();
 
+    //nombred e lugat vecino
+    virtual string prueba();
+
+    virtual Lugar* prueba2();
+
     
 };
 #else
