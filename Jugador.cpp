@@ -122,13 +122,15 @@ void Jugador::jugar()
 		if (barca->mostrarLetraAsociada() == tecla ) //Si el usuario ha marcado la tecla de la barca, la barca se mueve
 		{
 			cerr << "2.1 " << barca->mostrarLetraAsociada() << endl; 
-			if(barca->robotPresente()) //Si el robot está en la barca
+			if(barca->robotPresente()) //Si el robot está en la barca y hay menos de 3 individuos
 			{
 				cerr << "El robot está presente en la barca" << endl;
 				cerr << "3 Jugar activa el movimiento de la barca " << barca->mostrarNombre() << endl;
-				barca->movimientoDeBarca(); //Movimiento de la barca
-					
-			}			
+				barca->movimientoDeBarca(); //Movimiento de la barca			
+			}
+			/**
+			 Mostrar mensaje (throw) que diga que meta al robot en la barca  
+			 */			
 		}
 		//Movimiento de los individuos
 		else

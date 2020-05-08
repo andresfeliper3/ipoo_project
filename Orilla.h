@@ -35,6 +35,9 @@ class Orilla : public Lugar
     //Cambia de lugar vecino
     virtual void cambiarDeVecino(Lugar *nuevoLugarVecino);
 
+    //Hace que un individuo se mueva de este lugar, al lugar vecino.
+    virtual bool moverIndividuo(Individuo *individuo);
+
 };
 #else
 class Orilla;
