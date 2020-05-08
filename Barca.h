@@ -22,9 +22,7 @@ class Barca : public Lugar
     protected:
     
     vector <Lugar*> orillas;
-    string nombreLugar;
-    string letraAsociada;
-    Lugar *lugarVecino; 
+     
     
     public:
     //Constructor

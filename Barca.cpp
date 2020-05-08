@@ -24,9 +24,8 @@ Barca::~Barca()
 void Barca::movimientoDeBarca() 
 {
 	cerr << "4 entra en movimientoDeBarca" << endl; 
-	cerr << "Barca tiene como vecino a " << this->prueba() << "con puntero " << lugarVecino <<endl;	
 	this->cambiarDeVecino(); //Cambia el vecino de la barca
-	cerr << " 4.3 barca cambia de vecino a " << this->prueba() <<endl;
+
     orillas[0]->cambiarDeVecino(this); //La orilla izquierda cambia de vecino.
 	cerr << " 4.4 izq " << orillas[0]->mostrarNombre() << " con puntero " << orillas[0] << " cambia de vecino " << orillas[0]->tieneVecino() <<endl;
    	orillas[1]->cambiarDeVecino(this); //La orilla derecha cambia de vecino.	

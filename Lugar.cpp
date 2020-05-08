@@ -132,16 +132,6 @@ bool Lugar::revisarSiPierde()
     return false;
 }
 
-//Retorna el nombre del lugar vecino
-string Lugar::prueba()
-{
-    return lugarVecino->mostrarNombre();
-}
-
-Lugar *Lugar::prueba2()
-{
-    return lugarVecino;
-}
 
 
 

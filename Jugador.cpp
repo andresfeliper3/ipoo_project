@@ -98,7 +98,6 @@ void Jugador::revisarPartida()
 		cerr << "Ganaste" <<endl;
     //ganaste();
 	}
-	partidaEnCurso = true;
 	cerr << "Pronto a salir de revisarPartida de Jugador con partida en curso " << partidaEnCurso << endl;  
 }
 
@@ -122,7 +121,7 @@ void Jugador::jugar()
 		cerr << "2 entra en Jugar " << tecla << " " << this->barca->mostrarLetraAsociada() <<  endl; 
 
 		//Movimiento de la barca
-		if ("B" == tecla ) //Si el usuario ha marcado la tecla de la barca, la barca se mueve
+		if (barca->mostrarLetraAsociada() == tecla ) //Si el usuario ha marcado la tecla de la barca, la barca se mueve
 		{
 			cerr << "2.1 " << barca->mostrarLetraAsociada() << endl; 
 			if(barca->robotPresente()) //Si el robot está en la barca

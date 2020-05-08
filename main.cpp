@@ -32,8 +32,7 @@ int main()
   Barca barca("BARCA", &orillaIzquierda,"B"); //CREAR BARCA,VECINO INICIAL, LETRA ASOCIADA
   orillaIzquierda.cambiarDeVecino(&barca);
 
-  Orilla orillaDerecha("DERECHA", nullptr); //CREAR ORILLA DER, VECINO NULO
-  cerr << "El lugar vecino inicial de la barca es " << barca.prueba() <<endl;  
+  Orilla orillaDerecha("DERECHA", nullptr); //CREAR ORILLA DER, VECINO NULO 
   /***********************************************************************
   CREAR JUGADOR
   con los respectivos lugares creados anteriormente (Orilla izquierda, Barca, Orilla Derecha)
@@ -64,7 +63,6 @@ int main()
   player.agregarPresa(zorro, conejo);
   player.agregarPresa(conejo, lechuga);
 
-  cerr << "La orilla 0 de barca es " << &orillaIzquierda << " y el vecino de la barca es " << barca.prueba2() <<endl; 
 
    //Mientras la partida esté en curso
   do 

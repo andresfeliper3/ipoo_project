@@ -23,9 +23,7 @@ Relaciones: Conoce Individuos
 class Orilla : public Lugar 
 {
     protected:
-    
-    Lugar *LugarVecino;
-    string nombreLugar;
+
     
     public:
     //Constructor
