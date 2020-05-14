@@ -14,6 +14,11 @@ además del robot. El problema es que si el robot deja solos al zorro y el conej
 el zorro se comerá el conejo. Y si deja solos al conejo y la lechuga, el conejo se comerá la lechuga.
 El jugador debe controlar que órdenes dar, para lograr que el robot transporte los tres individuos a la otra orilla, sanos y salvos.
 
+
+
+Errores por corregir:
+Si hago la secuencia: C, R, B, Z.
+El programa muere. 
 */
 #include <iostream>
 #include "Jugador.h"
@@ -76,6 +81,7 @@ int main()
       
   } while(player.mostrarSiPartidaEnCurso());
   
+  cout << endl << "Partida finalizada" << endl;
   return 0;
   
 }

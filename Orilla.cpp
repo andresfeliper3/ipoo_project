@@ -36,12 +36,15 @@ void Orilla::cambiarDeVecino(Lugar *nuevoLugarVecino)
 //Mueve el individuo a lugar vecino (la barca), pero sólo si la barca tiene cupo
 bool Orilla::moverIndividuo(Individuo *individuo)
 {
-	//Si el individuo está presente y la barca tiene menos de 2 individuos presentes
-    if(individuoPresente(individuo) >= 0 and lugarVecino->cantidadDeIndividuos() < 2) 
-    {
-        lugarVecino->agregarIndividuo(individuo); 
-        this->quitarIndividuo(individuo);     
-        return true;
-    }   
+	if (tieneVecino())
+	{
+		//Si el individuo está presente y la barca tiene menos de 2 individuos presentes
+    	if(individuoPresente(individuo) >= 0 and lugarVecino->cantidadDeIndividuos() < 2) 
+    	{
+       		lugarVecino->agregarIndividuo(individuo); 
+       		this->quitarIndividuo(individuo);     
+        	return true;
+    	}
+	}
     return false; 
 }
