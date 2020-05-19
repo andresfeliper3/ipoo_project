@@ -51,6 +51,10 @@ string Barca::mostrarLetraAsociada()
 void Barca::conocerOrillas(Lugar *orilla)
 {
   orillas.push_back(orilla);
+<<<<<<< HEAD
 }
 
 
+=======
+}
+>>>>>>> 682690fb11dd7477341813e31d2ab9f8064a0d99

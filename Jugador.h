@@ -4,7 +4,11 @@
   		   José David Barona Hernández "jose.david.barona@correounivalle.edu.co"
   		   Diego Ledesema "diego.ledesma@correounivalle.edu.co"
   Fecha creaciÃ³n: 2020-03-30
+<<<<<<< HEAD
   Fecha Ãºltima modificaciÃ³n: 2020-05-07
+=======
+  Fecha Ãºltima modificaciÃ³n: 2020-04-20
+>>>>>>> 682690fb11dd7477341813e31d2ab9f8064a0d99
 */
 
 #ifndef JUGADOR__HH
@@ -15,6 +19,7 @@
 #include "Lugar.h"
 #include "Barca.h"
 #include <string>
+
 
 
 /*

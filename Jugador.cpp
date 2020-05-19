@@ -46,6 +46,12 @@ void Jugador::conocerLugar(Lugar* nuevoLugar)
 	if (nuevoLugar)
 	{
 		lugares.push_back(nuevoLugar);
+
+    if (lugares.size() == 2)
+    { 
+      lugares[1]->conocerOrillas(lugares[0]);
+      lugares[1]->conocerOrillas(lugares[2]);
+    }
 	}
 }
 
@@ -152,7 +158,7 @@ bool Jugador::mostrarSiPartidaEnCurso()
 	return partidaEnCurso;
 }
 
-/*Compara la letra recibida de leerTeclado con las letras correspondientes a cada individuo y a la barca, y al encontrar una coincidencia, hace que se se mueva a su lugar vecino. */
+//Compara la letra recibida de leerTeclado con las letras correspondientes a cada individuo y a la barca, y al encontrar una coincidencia, hace que se se mueva a su lugar vecino. */
 void Jugador::jugar()
 {
 	if (partidaEnCurso) //Mientras la partida esté en curso
