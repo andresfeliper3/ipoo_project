@@ -29,17 +29,17 @@ string Individuo::mostrarNombre()
 //Agrega posibles presas para el Individuo, añadiendo punteros al vector puedeComer
 void Individuo::agregarPresa(Individuo *presa)
 {
-    if(this != presa) //Evita que el individuo se pueda comer a sí mismo
-    {
-      individuosQuePuedeComer.push_back(presa);
-    }
+  if(this != presa) //Evita que el individuo se pueda comer a sí mismo
+  {
+    individuosQuePuedeComer.push_back(presa);
+  }
     
 }
 
 //Retorna la letra asociada al individuo
 string Individuo::mostrarLetraAsociada()
 {
-    return this->letraAsociada;
+  return this->letraAsociada;
 }
 
 //Retorna true si es un robot y false en caso contrario

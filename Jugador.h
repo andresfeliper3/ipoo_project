@@ -14,6 +14,7 @@
 #include "Orilla.h"
 #include "Lugar.h"
 #include "Barca.h"
+#include <string>
 
 
 /*
@@ -80,6 +81,14 @@ class Jugador
 
     //Muestra el estado del juego en pantalla.
     virtual void estado();
+
+    //Cuenta los espacios necesarios para que quede estético el estado del juego
+    virtual string diseño(string palabra, int dondeInicia);
+
+    //Se encarga de que las palabras aparezcan centradas en cada columna de la tabla.
+    virtual string centrarPalabra(string palabra);
+
+
 };
 #else
 class Jugador;

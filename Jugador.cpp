@@ -10,6 +10,9 @@
 #include<iostream>
 #include "Jugador.h"
 #include <string>
+#include <cctype>
+#include <algorithm>
+#include <cmath>
 
 //Constructor
 Jugador::Jugador(bool partidaEnCurso, Barca *barca) : partidaEnCurso(partidaEnCurso), barca(barca)
@@ -33,7 +36,7 @@ Individuo* Jugador::crearIndividuo(string nombre, string letraParaMover, bool es
 {
 	Individuo* nuevoIndividuo = new Individuo(nombre, letraParaMover, esRobot);
 	individuos.push_back(nuevoIndividuo); 
-  	lugares[0]->agregarIndividuo(nuevoIndividuo); //Coloca el individuo en la orilla izquierda
+  lugares[0]->agregarIndividuo(nuevoIndividuo); //Coloca el individuo en la orilla izquierda
 	return nuevoIndividuo;
 }
 
@@ -56,7 +59,6 @@ void Jugador::agregarPresa(Individuo* predador, Individuo* presa)
 void Jugador::leerTeclado()
 {
 	getline(cin, this->tecla);
-	cerr << "1, leer teclado " <<  tecla << " " << barca->mostrarLetraAsociada() <<endl;
 }
 
 //Mueve un individuo al lugar vecino del lugar que esté.
@@ -64,13 +66,8 @@ bool Jugador::moverIndividuo(Individuo* individuo)
 {
 	for (int cualLugar = 0; cualLugar < lugares.size(); cualLugar++)
 	{
-		if(lugares[cualLugar]->moverIndividuo(individuo))  //NOTA: ESTA FUNCIÓN YA REVISA QUE EL INDIVIDUO ESTÉ PRESENTE
-		{
-			cerr << "3.1 se ejecutó la función de moverIndividuo de Lugar "  <<endl;
-			cerr << individuo->mostrarNombre() << " se movió desde " << lugares[cualLugar]->mostrarNombre() << " hasta su lugar vecino" <<endl;
-			return true;
-		}
-			
+		if(lugares[cualLugar]->moverIndividuo(individuo))  
+			return true;	
 	}
 	return false;
 }
@@ -79,24 +76,68 @@ bool Jugador::moverIndividuo(Individuo* individuo)
 
 
 void Jugador::revisarPartida()
-{
-	cerr << "Entró a revisarPartida de Jugador" <<endl; 
-	//lugares[1]->cambiarDeVecino(); //Cambia el lugar vecino de la barca	
+{	
 	if (lugares[0]->revisarSiPierde() or lugares[2]->revisarSiPierde() or lugares[1]->revisarSiPierde())
 	{
     //Perdiste
 		partidaEnCurso = false;
-		cerr << "Perdiste" <<endl; 
-   // perdiste();
+		cerr << endl << 
+"´´´´´´´´´´´´´´´´´´´´´$$$$$$$$$$$$$$$$´´´´´´´´´´´´´´´´´´´´´´"<< endl <<
+"´´´´´´´´´´´´´´´´´$$$$$$´´´´´´´´´´´´´$$$$$$´´´´´´´´´´´´´´´´´"<< endl <<
+"´´´´´´´´´´´´´´$$$$´´´´´´´´´´´´´´´´´´´´´´´$$$$´´´´´´´´´´´´´´"<< endl <<
+"´´´´´´´´´´´´´$$$´´´´´´´´´´´´´´´´´´´´´´´´´´´$$$´´´´´´´´´´´´´"<< endl <<
+"´´´´´´´´´´´´$$´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´$$´´´´´´´´´´´´"<< endl <<
+"´´´´´´´´´´´$$´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´$$´´´´´´´´´´´"<< endl <<
+"´´´´´´´´´´$$´´´´´´´´´´P E R D I S T E´´´´´´´´´$$´´´´´´´´´´´"<< endl <<
+"´´´´´´´´´´$$´$$´´´´´´´´´´´´´´´´´´´´´´´´´´´´´$$´$$´´´´´´´´´´"<< endl <<
+"´´´´´´´´´´$$´$$´´´´´´´´´´´´´´´´´´´´´´´´´´´´´$$´$$´´´´´´´´´´"<< endl <<
+"´´´´´´´´´´$$´$$´´´´´´´´´´´´´´´´´´´´´´´´´´´´´$$´$$´´´´´´´´´´"<< endl <<
+"´´´´´´´´´´$$´´$$´´´´´´´´´´´´´´´´´´´´´´´´´´´$$´´$$´´´´´´´´´´"<< endl <<
+"´´´´´´´´´´$$´´$$´´´´´´´´´´´´´´´´´´´´´´´´´´´$$´´$$´´´´´´´´´´"<< endl <<
+"´´´´´´´´´´´$$´$$´´´$$$$$$$$´´´´´´$$$$$$$´´´$$´$$´´´´´´´´´´´"<< endl <<
+"´´´´´´´´´´´´$$$$´$$$$$$$$$$´´´´´$$$$$$$$$$´$$$$¶´´´´´´´´´´´"<< endl <<
+"´´´´´´´´´´´´´$$$´$$$$$$$$$$´´´´´$$$$$$$$$$´$$$´´´´´´´´´´´´´"<< endl <<
+"´´´´$$$´´´´´´´$$´´$$$$$$$$´´´´´´´$$$$$$$$$´$$´´´´´´´´$$$$´´"<< endl <<
+"´´´$$$$$´´´´´$$´´´$$$$$$$´´´$´$´´´$$$$$$$´´´$$´´´´´$$$$$$´´"<< endl <<
+"´´$$´´´$$´´´´$$´´´´´$$$´´´´$$$$$´´´´$$$´´´´´$$´´´´$$´´´$$´´"<< endl <<
+"´$$$´´´´$$$$´´$$´´´´´´´´´´$$$´$$$´´´´´´´´´´$$´´$$$$´´´´$$$´"<< endl <<
+"$$´´´´´´´´´$$$$$$$$´´´´´´´$$$´$$$´´´´´´´$$$$$$$$$´´´´´´´´$$"<< endl <<
+"$$$$$$$$$´´´´´$$$$$$$$´´´´$$$´$$$´´´´$$$$$$$$´´´´´´$$$$$$$$"<< endl <<
+"´´$$$$´$$$$$´´´´´´$$$$$´´´´´´´´´´´´$$$´$$´´´´´$$$$$$´$$$´´´"<< endl <<
+"´´´´´´´´´´$$$$$$´´$$$´$$´´´´´´´´´´´$$´$$$´´$$$$$$´´´´´´´´´´"<< endl <<
+"´´´´´´´´´´´´´´$$$$$$´$´´$$$$$$$$$$$´$$´$$$$$$´´´´´´´´´´´´´´"<< endl <<
+"´´´´´´´´´´´´´´´´´´$$´$´$$´$$´$´$$$$$$$´$$´´´´´´´´´´´´´´´´´´"<< endl <<
+"´´´´´´´´´´´´´´´´$$$$´$$´$´$$´$´$$´$´$$´$$$$$´´´´´´´´´´´´´´´"<< endl <<
+"´´´´´´´´´´´´$$$$$´$$´´´$$$$$$$$$$$$$´´´$$´$$$$$´´´´´´´´´´´´"<< endl <<
+"´´´´$$$$$$$$$$´´´´´$$´´´´´´´´´´´´´´´´´$$´´´´´´$$$$$$$$$´´´´"<< endl <<
+"´´´$$´´´´´´´´´´´$$$$$$$´´´´´´´´´´´´´$$$$$$$$´´´´´´´´´´$$´´´"<< endl <<
+"´´´´$$$´´´´´$$$$$´´´´´$$$$$$$$$$$$$$$´´´´´$$$$$´´´´´$$$´´´´"<< endl <<
+"´´´´´´$$´´´$$$´´´´´´´´´´´$$$$$$$$$´´´´´´´´´´´$$$´´´$$´´´´´´"<< endl <<
+"´´´´´´$$´´$$´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´$$´´$$´´´´´´"<< endl <<
+"´´´´´´´$$$$´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´´$$$´´´´´´´´"<<endl <<endl; 
 	} 
 	else if (lugares[2]->cantidadDeIndividuos() == individuos.size())
 	{
     //Ganaste
 		partidaEnCurso = false;
-		cerr << "Ganaste" <<endl;
-    //ganaste();
-	}
-	cerr << "Pronto a salir de revisarPartida de Jugador con partida en curso " << partidaEnCurso << endl;  
+		cerr << endl << 
+"||||$$$$||||||||||||||||$$$$$$$$$||||||||||"<< endl <<
+"|||$-----$||||||||||$$$--------$$$|||||||||"<< endl <<
+"|||$------$|||||||$$$-------------$$$||||||"<< endl <<
+"||||$------$||||$$-------------------$$||||"<< endl <<
+"|||||$-----$|||$$-----$$------$$-----$$$|||"<< endl <<
+"||||||$----$||$------$$$$----$$$$------$$||"<< endl <<
+"||||$$$$$$$$$$$$$----------------------$$||"<< endl <<
+"||||$------------$---------$-----------$$||"<< endl <<
+"||$$-------------$---$$----------$$----$$||"<< endl <<
+"|$$---$$$$$$$$$$$-----$$--------$$-----$$||"<< endl <<
+"|$---------------$------$$$$$$$$-------$$||"<< endl <<
+"|$$--------------$--------------------$$|||"<< endl <<
+"||$---$$$$$$$$$$$----G A N A S T E----$$|||"<< endl <<
+"||$$----------$$$$-----------------$|||||||"<< endl <<
+"|||$$$$$$$$$$$$|||$$$$$$$$$$$$$$$$$||||||||"<< endl << 
+"|||||||||||||||||||||||||||||||||||||||||||"<< endl << endl;
+	}  
 }
 
 //Mostrar la tecla oprimida por el usuario
@@ -116,41 +157,69 @@ void Jugador::jugar()
 {
 	if (partidaEnCurso) //Mientras la partida esté en curso
 	{
-		cerr << "2 entra en Jugar " << tecla << " " << this->barca->mostrarLetraAsociada() <<  endl; 
-
-		//Movimiento de la barca
-		if (barca->mostrarLetraAsociada() == tecla ) //Si el usuario ha marcado la tecla de la barca, la barca se mueve
+    string j = barca->mostrarLetraAsociada();
+    transform(j.begin(), j.end(),j.begin(),[](unsigned char c) 
+    { 
+      return tolower(c); //transformar una letra mayúscula a minúscula
+    }); 
+		
+    if((barca->mostrarLetraAsociada())== tecla || tecla == j) //Si el usuario ha marcado la tecla de la barca, la barca se mueve
 		{
-			cerr << "2.1 " << barca->mostrarLetraAsociada() << endl; 
 			if(barca->robotPresente()) //Si el robot está en la barca y hay menos de 3 individuos
 			{
-				cerr << "El robot está presente en la barca" << endl;
-				cerr << "3 Jugar activa el movimiento de la barca " << barca->mostrarNombre() << endl;
 				barca->movimientoDeBarca(); //Movimiento de la barca			
-			}
-			/**
-			 Mostrar mensaje (throw) que diga que meta al robot en la barca  
-			 */			
+			}		
 		}
 		//Movimiento de los individuos
 		else
 		{
 			for (int cualIndividuo = 0; cualIndividuo < individuos.size(); cualIndividuo++ )
 			{
-				if (individuos[cualIndividuo]->mostrarLetraAsociada() == tecla)
+        string k = individuos[cualIndividuo]->mostrarLetraAsociada();
+
+        transform(k.begin(), k.end(),k.begin(),[](unsigned char c)
+        { 
+          return tolower(c); //transformar una letra mayúscula a minúscula
+        });
+
+				if (individuos[cualIndividuo]->mostrarLetraAsociada() == tecla || tecla == k)
 				{
-					cerr << "3 hay un individuo con la letra asociada " << individuos[cualIndividuo]->mostrarLetraAsociada() <<endl;
 					if(this->moverIndividuo(individuos[cualIndividuo]))
 					{
-						cerr << "4 se ejecutó la función de moverIndividuo de Jugador para " << individuos[cualIndividuo]->mostrarNombre() <<endl;
 						break;
 					}		
 				}
 			}	
-		//	cout << "Presiona una tecla válida" <<endl; //Cambiar por throw
 		}	
 				
 	}
+}
+
+string Jugador::diseño(string palabra, int dondeInicia)
+{
+  string palabraFinal;
+  do
+  {
+    palabraFinal += " ";
+
+  } while(palabraFinal.size() < dondeInicia);
+  
+  palabraFinal += palabra;
+  return palabraFinal;
+}    
+
+string Jugador::centrarPalabra(string palabra)
+{
+  int tamanio = palabra.size();
+  int dondeInicia = 9 - (tamanio / 2) - 1;
+  
+  string cadenaFinal = "|" + diseño(palabra, dondeInicia);
+  
+  for (int ubicacion = cadenaFinal.size(); ubicacion < 18 ; ubicacion++ )
+  {
+    cadenaFinal += " ";
+  }
+return cadenaFinal;
 }
 
 
@@ -161,6 +230,9 @@ void Jugador::estado()
   bool orillaIzquierdaTieneVecino = true;
 
   //Imprime los nombres de los lugares
+
+  cout << centrarPalabra("ORILLA") << centrarPalabra("") << centrarPalabra("") << centrarPalabra("ORILLA")  << endl;
+
 	for (int cualLugar = 0; cualLugar < lugares.size(); cualLugar++)
 	{
 		//Revisa si se está mirando la orilla derecha
@@ -169,48 +241,48 @@ void Jugador::estado()
 			if(!lugares[cualLugar]->tieneVecino()) //Si la orilla derecha no tiene vecino
 			{
 				orillaIzquierdaTieneVecino = true;
-				cout << "| \t \t \t |";
+				cout << centrarPalabra("");
 			}
 		}
-		cout << "|\t" << lugares[cualLugar]->mostrarNombre() << "\t  "; //Imprime el nombre del lugar
+		cout << centrarPalabra(lugares[cualLugar]->mostrarNombre()); //Imprime el nombre del lugar
 		if(cualLugar == 0) //Revisa si se está mirando la orilla izquierda
 		{
 			if(!lugares[cualLugar]->tieneVecino()) //Si la orilla izquierda no tiene vecino
 			{
 				orillaIzquierdaTieneVecino = false;
-				cout << "| \t \t \t|";
+				cout << centrarPalabra("");
 			}
 		}
 	}
-	cout << endl; 
+	cout << endl << endl; 
 
-	//Imprime a los individuos por orden según el vector de individuos. NO ME GUSTÓ MUCHO
+	//Imprime a los individuos por orden según el vector de individuos. 
 	for (int cualIndividuo = 0; cualIndividuo < individuos.size(); cualIndividuo++)
 	{
 		if(lugares[0]->individuoPresente(individuos[cualIndividuo]) >= 0) //Si el individuo está en la orilla izquierda
 		{
-			cout << " | \t  " << individuos[cualIndividuo]->mostrarNombre() << "\t ";		
-			cout << "| \t \t \t| \t \t \t | \t \t \t " << endl;
+			cout << centrarPalabra(individuos[cualIndividuo]->mostrarNombre());		
+			cout << centrarPalabra("") << centrarPalabra("") << centrarPalabra("") << endl;
 		} 
 		else if(lugares[1]->individuoPresente(individuos[cualIndividuo]) >= 0) //Si el individuo está en la barca
 		{
 			if(orillaIzquierdaTieneVecino) //Si la barca está al lado izquiedo
 			{
-				cout << "| \t \t \t |";
-				cout << " \t " << individuos[cualIndividuo]->mostrarNombre() << "\t ";
-				cout << "| \t \t \t | \t \t \t |" << endl;
+				cout << centrarPalabra("");
+				cout << centrarPalabra(individuos[cualIndividuo]->mostrarNombre());
+				cout << centrarPalabra("") << centrarPalabra("") << endl;
 			}
 			else //Si la barca está al lado derecho
 			{
-				cout << "| \t \t \t | \t \t \t |";
-				cout << " \t " << individuos[cualIndividuo]->mostrarNombre() << "\t ";
-				cout << "| \t \t \t |" << endl;
+				cout << centrarPalabra("") << centrarPalabra("");
+				cout << centrarPalabra(individuos[cualIndividuo]->mostrarNombre());
+				cout << centrarPalabra("") << endl;
 			}
 		}
 		else if(lugares[2]->individuoPresente(individuos[cualIndividuo]) >= 0) //Si el individuo está en la orilla derecha
 		{
-			cout << "| \t \t \t| \t \t \t | \t \t \t ";
-			cout << " | \t  " << individuos[cualIndividuo]->mostrarNombre() << "\t " << endl;   
+			cout << centrarPalabra("") << centrarPalabra("") << centrarPalabra("");
+			cout << centrarPalabra(individuos[cualIndividuo]->mostrarNombre()) << endl;   
 
 		}
 		

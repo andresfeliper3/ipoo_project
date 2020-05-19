@@ -4,15 +4,16 @@
   		   José David Barona Hernández "jose.david.barona@correounivalle.edu.co"
   		   Diego Ledesema "diego.ledesma@correounivalle.edu.co"
   Fecha creación: 2020-03-30
-  Fecha última modificación: 2020-03-30
+  Fecha última modificación: 2020-05-16
 
   HISTORIA:
 
-hay un robot que debe transportar un zorro, un conejo y una lechuga desde un lado del río 
+Hay un robot que debe transportar un zorro, un conejo y una lechuga desde un lado del río 
 hasta la otra orilla, usando una barca. En la barca solo cabe uno de los tres individuos,
 además del robot. El problema es que si el robot deja solos al zorro y el conejo, 
 el zorro se comerá el conejo. Y si deja solos al conejo y la lechuga, el conejo se comerá la lechuga.
 El jugador debe controlar que órdenes dar, para lograr que el robot transporte los tres individuos a la otra orilla, sanos y salvos.
+
 
 */
 #include <iostream>
@@ -25,7 +26,12 @@ using namespace std;
 
 int main() 
 {
-  /*
+  
+string continuar = "S";
+
+while(continuar == "S" || continuar == "s")
+  {
+    /*
     CREAR LA BARCA Y LAS ORILLAS
   */
   Orilla orillaIzquierda("IZQUIERDA", nullptr); //CREA ORILLA IZQ, VECINO NULO
@@ -62,22 +68,31 @@ int main()
   //Se le asignan las posibles presas a los individuos
   player.agregarPresa(zorro, conejo);
   player.agregarPresa(conejo, lechuga);
+  //Mientras la partida esté en curso
 
+    do 
+    {
+      cout << "\x1B[2J\x1B[H"; // limpia la consola
 
-   //Mientras la partida esté en curso
-  do 
-  {
-    player.estado(); //Imprime el estado del juego
-    player.leerTeclado(); //Lee la tecla ingresada por el usuario
-    player.jugar();  //Juega según la tecla ingresada por el usuario
-    cerr << "Ejecutó Jugar" <<endl;
-    player.revisarPartida();  //Revisa si se perdió o ganó la partida después del movimiento
-    cerr << "Ejecutó revisarPartida" << endl;
+      player.estado(); //Imprime el estado del juego
+      player.leerTeclado(); //Lee la tecla ingresada por el usuario
+      player.jugar();  //Juega según la tecla ingresada por el usuario
+      player.revisarPartida();  //Revisa si se perdió o ganó la partida después del movimiento
+
+      if(player.mostrarSiPartidaEnCurso()==false) //condición para que imprima el último estado del juego
+      {
+        cout << "\x1B[2J\x1B[H"; // limpia la consola
+        player.estado(); //Imprime el estado del juego
+        player.revisarPartida();  //Revisa si se perdió o ganó la partida después del movimiento
+      }
       
-  } while(player.mostrarSiPartidaEnCurso());
-  
-  return 0;
-  
+      } while(player.mostrarSiPartidaEnCurso());
+
+    cout << endl << "Partida finalizada" << endl << endl;
+
+    cout << "¿Desea jugar de nuevo?, presione S para jugar otra vez" << endl;
+    getline(cin,continuar);
+  }
 }
 
 

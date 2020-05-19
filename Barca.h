@@ -4,7 +4,7 @@
   		   Jos� David Barona Hern�ndez "jose.david.barona@correounivalle.edu.co"
   		   Diego Ledesema "diego.ledesma@correounivalle.edu.co"
   Fecha creación: 2020-03-30
-  Fecha última modificación: 2020-03-30
+  Fecha última modificación: 2020-05-05
 */
 
 #ifndef BARCA_HH
